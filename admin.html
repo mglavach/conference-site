@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduCon 2026 — Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1a56db; --blue-dk: #1140a6;
+      --green: #059669; --red: #dc2626; --gold: #d97706;
+      --bg: #f1f5f9; --surface: #fff; --border: #e2e8f0;
+      --text: #1e293b; --muted: #64748b; --radius: 10px;
+    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── LOGIN GATE ── */
+    #loginGate {
+      position: fixed; inset: 0; background: linear-gradient(135deg, #1140a6, #0694a2);
+      display: flex; align-items: center; justify-content: center; z-index: 999;
+    }
+    #loginGate.hidden { display: none; }
+    .login-box {
+      background: var(--surface); border-radius: 16px; padding: 2.5rem;
+      width: 100%; max-width: 380px; box-shadow: 0 24px 60px rgba(0,0,0,.3);
+      text-align: center;
+    }
+    .login-box .lock { font-size: 2.5rem; margin-bottom: .75rem; }
+    .login-box h1 { font-size: 1.3rem; font-weight: 700; margin-bottom: .25rem; }
+    .login-box p { font-size: .85rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .login-box input {
+      width: 100%; padding: .65rem 1rem; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 1rem; outline: none; margin-bottom: .75rem;
+      text-align: center; letter-spacing: .1em;
+    }
+    .login-box input:focus { border-color: var(--blue); }
+    .login-box button {
+      width: 100%; padding: .7rem; background: var(--blue); color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer;
+    }
+    .login-box button:hover { background: var(--blue-dk); }
+    .login-error { color: var(--red); font-size: .82rem; margin-top: .5rem; display: none; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px; box-shadow: 0 2px 6px rgba(0,0,0,.2);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar .brand { font-weight: 700; font-size: 1rem; }
+    .topbar .brand span { opacity: .65; font-weight: 400; margin-left: .4rem; }
+    .topbar-actions { display: flex; gap: .75rem; align-items: center; }
+    .btn { padding: .4rem .9rem; border-radius: 7px; font-size: .83rem; font-weight: 600; cursor: pointer; border: none; }
+    .btn-outline { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+    .btn-outline:hover { background: rgba(255,255,255,.25); }
+    .btn-success { background: #10b981; color: #fff; }
+    .btn-success:hover { background: #059669; }
+    .btn-danger { background: transparent; color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.25); }
+    .btn-danger:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* ── STATS ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+    }
+    .stat-card .num { font-size: 2rem; font-weight: 800; color: var(--blue); }
+    .stat-card .lbl { font-size: .8rem; color: var(--muted); margin-top: .1rem; }
+
+    /* ── GAS STATUS BANNER ── */
+    .gas-banner {
+      background: #fef3c7; border: 1px solid #fcd34d; border-radius: var(--radius);
+      padding: 1rem 1.4rem; margin-bottom: 2rem; font-size: .88rem;
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .gas-banner.connected { background: #d1fae5; border-color: #6ee7b7; }
+    .gas-banner .gas-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .gas-banner strong { display: block; margin-bottom: .2rem; }
+    .gas-url-form { display: flex; gap: .5rem; margin-top: .6rem; }
+    .gas-url-form input {
+      flex: 1; padding: .45rem .75rem; border: 1.5px solid #fcd34d;
+      border-radius: 7px; font-size: .83rem; outline: none;
+    }
+    .gas-url-form input:focus { border-color: var(--blue); }
+    .gas-url-form button { padding: .45rem .9rem; background: var(--blue); color: #fff; border: none; border-radius: 7px; font-size: .83rem; font-weight: 600; cursor: pointer; }
+
+    /* ── SEARCH ── */
+    .search-row { display: flex; gap: .75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .search-row input {
+      flex: 1; min-width: 220px; padding: .55rem 1rem; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: .9rem; outline: none;
+    }
+    .search-row input:focus { border-color: var(--blue); }
+    .search-row select {
+      padding: .55rem .85rem; border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .87rem; background: var(--surface); cursor: pointer; outline: none;
+    }
+
+    /* ── SESSION TABLES ── */
+    .session-block {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: 1.2rem; overflow: hidden;
+    }
+    .session-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.2rem; cursor: pointer; user-select: none; gap: .5rem;
+    }
+    .session-header:hover { background: #f8fafc; }
+    .session-header-left { display: flex; align-items: center; gap: .75rem; flex: 1; min-width: 0; }
+    .session-header h3 { font-size: .93rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .session-header .meta { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+    .reg-count {
+      font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 12px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .reg-count.zero { background: #f1f5f9; color: var(--muted); }
+    .reg-count.some { background: #dbeafe; color: var(--blue); }
+    .chevron { font-size: .85rem; color: var(--muted); flex-shrink: 0; transition: transform .2s; }
+    .session-block.open .chevron { transform: rotate(180deg); }
+
+    .reg-table-wrap { display: none; border-top: 1px solid var(--border); overflow-x: auto; }
+    .session-block.open .reg-table-wrap { display: block; }
+
+    table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    th { background: #f8fafc; text-align: left; padding: .6rem 1rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); border-bottom: 1px solid var(--border); }
+    td { padding: .65rem 1rem; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+    .empty-row td { color: var(--muted); font-style: italic; text-align: center; padding: 1.5rem; }
+
+    /* ── TRACK PILL ── */
+    .track-pill { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: .15rem .55rem; border-radius: 12px; flex-shrink: 0; }
+    .track-Technology { background: #dbeafe; color: #1d4ed8; }
+    .track-Leadership { background: #ede9fe; color: #6d28d9; }
+    .track-Curriculum { background: #fef3c7; color: #92400e; }
+    .track-Wellbeing  { background: #d1fae5; color: #065f46; }
+    .track-Innovation { background: #fce7f3; color: #9d174d; }
+    .track-Keynote    { background: #e0f2fe; color: #0c4a6e; }
+
+    .no-results { text-align: center; padding: 3rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div id="loginGate">
+  <div class="login-box">
+    <div class="lock">🔒</div>
+    <h1>Admin Access</h1>
+    <p>EduCon 2026 — Registration Dashboard</p>
+    <input type="password" id="pwInput" placeholder="Enter admin password" />
+    <button onclick="attemptLogin()">Sign In</button>
+    <div class="login-error" id="loginError">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand">EduCon 2026 <span>Admin Dashboard</span></div>
+  <div class="topbar-actions">
+    <button class="btn btn-success" onclick="exportCSV()">Export CSV</button>
+    <button class="btn btn-outline" onclick="refreshData()">Refresh</button>
+    <button class="btn btn-danger" onclick="logout()">Log Out</button>
+  </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page" id="mainPage" style="display:none;">
+
+  <!-- STATS -->
+  <div class="stats-row" id="statsRow"></div>
+
+  <!-- GOOGLE APPS SCRIPT BANNER -->
+  <div class="gas-banner" id="gasBanner">
+    <div class="gas-icon">📊</div>
+    <div style="flex:1;">
+      <strong>Connect Google Sheets for cross-browser registration collection</strong>
+      Paste your Google Apps Script Web App URL below to automatically write every new registration into a Google Sheet. See <code>google-apps-script.js</code> for setup instructions.
+      <div class="gas-url-form">
+        <input type="url" id="gasUrlInput" placeholder="https://script.google.com/macros/s/.../exec" />
+        <button onclick="saveGasUrl()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH + FILTER -->
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="Search by name or email..." oninput="renderSessions()" />
+    <select id="trackFilter" onchange="renderSessions()">
+      <option value="">All Tracks</option>
+      <option>Keynote</option>
+      <option>Technology</option>
+      <option>Leadership</option>
+      <option>Curriculum</option>
+      <option>Wellbeing</option>
+      <option>Innovation</option>
+    </select>
+    <select id="dayFilter" onchange="renderSessions()">
+      <option value="">All Days</option>
+      <option>Day 1 — Monday, June 15</option>
+      <option>Day 2 — Tuesday, June 16</option>
+      <option>Day 3 — Wednesday, June 17</option>
+    </select>
+  </div>
+
+  <!-- SESSIONS LIST -->
+  <div id="sessionsList"></div>
+  <div id="noResults" class="no-results" style="display:none;">No sessions match your filters.</div>
+</div>
+
+<script>
+/* ── SESSION DATA (must match index.html) ── */
+const SESSIONS = [
+  { id: 1,  day: "Day 1 — Monday, June 15",      time: "9:00 AM – 10:15 AM",  track: "Keynote",    title: "Opening Keynote: The Learning Revolution",              speaker: "Dr. Maya Chen",            room: "Main Hall" },
+  { id: 2,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Technology", title: "AI in the Classroom: Tools That Actually Work",         speaker: "Prof. James Okafor",       room: "Room 101" },
+  { id: 3,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Curriculum",  title: "Project-Based Learning at Scale",                       speaker: "Sarah Lindqvist",          room: "Room 205" },
+  { id: 4,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Wellbeing",   title: "Building Trauma-Informed Schools",                      speaker: "Dr. Alicia Torres",        room: "Room 310" },
+  { id: 5,  day: "Day 1 — Monday, June 15",      time: "2:00 PM – 3:00 PM",   track: "Leadership",  title: "Instructional Coaching That Moves the Needle",          speaker: "Marcus Webb",              room: "Room 102" },
+  { id: 6,  day: "Day 1 — Monday, June 15",      time: "2:00 PM – 3:00 PM",   track: "Innovation",  title: "Maker Spaces on Any Budget",                            speaker: "Lisa Park",                room: "Room 212" },
+  { id: 7,  day: "Day 1 — Monday, June 15",      time: "3:15 PM – 4:15 PM",   track: "Technology",  title: "Data Literacy: Teaching Students to Question Numbers",  speaker: "Prof. James Okafor",       room: "Room 101" },
+  { id: 8,  day: "Day 1 — Monday, June 15",      time: "3:15 PM – 4:15 PM",   track: "Curriculum",  title: "Formative Assessment Without the Paper Stack",          speaker: "Dr. Robin Hayes",          room: "Room 205" },
+  { id: 9,  day: "Day 2 — Tuesday, June 16",     time: "9:00 AM – 10:00 AM",  track: "Keynote",    title: "Keynote: Equity as Infrastructure",                     speaker: "Dr. Kofi Mensah",          room: "Main Hall" },
+  { id: 10, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Leadership",  title: "Navigating Policy While Staying Student-Centered",     speaker: "Superintendent Priya Nair",room: "Room 102" },
+  { id: 11, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Technology",  title: "Cybersecurity and Digital Citizenship in K–12",        speaker: "Anna Kowalski",            room: "Room 101" },
+  { id: 12, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Wellbeing",   title: "Staff Burnout: Diagnosis and Recovery",                speaker: "Dr. Alicia Torres",        room: "Room 310" },
+  { id: 13, day: "Day 2 — Tuesday, June 16",     time: "1:30 PM – 3:00 PM",   track: "Curriculum",  title: "Workshop: Backward Design in 90 Minutes",              speaker: "Dr. Robin Hayes",          room: "Workshop A" },
+  { id: 14, day: "Day 2 — Tuesday, June 16",     time: "1:30 PM – 3:00 PM",   track: "Innovation",  title: "Workshop: Rapid Prototyping for Educators",            speaker: "Lisa Park",                room: "Workshop B" },
+  { id: 15, day: "Day 2 — Tuesday, June 16",     time: "3:15 PM – 4:15 PM",   track: "Leadership",  title: "Hiring for Culture and Competence",                    speaker: "Marcus Webb",              room: "Room 102" },
+  { id: 16, day: "Day 2 — Tuesday, June 16",     time: "3:15 PM – 4:15 PM",   track: "Technology",  title: "Immersive Learning: AR/VR Without the Hype",           speaker: "Anna Kowalski",            room: "Room 101" },
+  { id: 17, day: "Day 3 — Wednesday, June 17",   time: "9:00 AM – 10:00 AM",  track: "Keynote",    title: "Closing Keynote: Courage in the Classroom",            speaker: "Dr. Maya Chen",            room: "Main Hall" },
+  { id: 18, day: "Day 3 — Wednesday, June 17",   time: "10:30 AM – 11:30 AM", track: "Curriculum",  title: "Multilingual Learners: Beyond Compliance",             speaker: "Sarah Lindqvist",          room: "Room 205" },
+  { id: 19, day: "Day 3 — Wednesday, June 17",   time: "10:30 AM – 11:30 AM", track: "Wellbeing",   title: "Social-Emotional Learning That Isn't Cringe",         speaker: "Dr. Kofi Mensah",          room: "Room 310" },
+  { id: 20, day: "Day 3 — Wednesday, June 17",   time: "1:00 PM – 2:00 PM",   track: "Innovation",  title: "Student Voice in School Design",                       speaker: "Superintendent Priya Nair",room: "Room 212" },
+  { id: 21, day: "Day 3 — Wednesday, June 17",   time: "1:00 PM – 2:00 PM",   track: "Technology",  title: "The Accessible Classroom: Technology for Every Learner",speaker: "Prof. James Okafor",      room: "Room 101" },
+  { id: 22, day: "Day 3 — Wednesday, June 17",   time: "2:15 PM – 3:15 PM",   track: "Leadership",  title: "Leading Change Without Burning Bridges",               speaker: "Marcus Webb",              room: "Room 102" },
+];
+
+const STORAGE_KEY    = "educon2026_registrations";
+const AUTH_KEY       = "educon2026_admin_auth";
+const GAS_URL_KEY    = "educon2026_gas_url";
+/* ── Change this hash to set a new password.
+      Default password: EduAdmin2026
+      To generate a new hash: open browser console, run:
+        crypto.subtle.digest('SHA-256', new TextEncoder().encode('YourPassword'))
+          .then(b => console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))     ── */
+const PASSWORD_HASH  = "1a3a73b4a0b179ca264eeb8808168475a795290a73169edbea5586789680ccc2";
+
+/* ── AUTH ── */
+async function sha256hex(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, "0")).join("");
+}
+
+async function attemptLogin() {
+  const pw = document.getElementById("pwInput").value;
+  const hash = await sha256hex(pw);
+  if (hash === PASSWORD_HASH) {
+    sessionStorage.setItem(AUTH_KEY, "1");
+    document.getElementById("loginGate").classList.add("hidden");
+    document.getElementById("mainPage").style.display = "block";
+    initDashboard();
+  } else {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("pwInput").value = "";
+    document.getElementById("pwInput").focus();
+  }
+}
+
+document.getElementById("pwInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") attemptLogin();
+});
+
+function logout() {
+  sessionStorage.removeItem(AUTH_KEY);
+  location.reload();
+}
+
+/* ── INIT ── */
+function initDashboard() {
+  const gasUrl = localStorage.getItem(GAS_URL_KEY) || "";
+  if (gasUrl) {
+    document.getElementById("gasUrlInput").value = gasUrl;
+    const banner = document.getElementById("gasBanner");
+    banner.classList.add("connected");
+    banner.querySelector("strong").textContent = "Google Sheets connected";
+    banner.querySelector("p, strong + *") // update description
+    banner.innerHTML = `<div class="gas-icon">✅</div><div style="flex:1;"><strong>Google Sheets connected</strong>New registrations from index.html are automatically written to your Sheet.<div class="gas-url-form"><input type="url" id="gasUrlInput" value="${gasUrl}" placeholder="https://script.google.com/macros/s/.../exec" /><button onclick="saveGasUrl()">Update</button></div></div>`;
+  }
+  renderStats();
+  renderSessions();
+}
+
+/* ── GAS URL ── */
+function saveGasUrl() {
+  const url = document.getElementById("gasUrlInput").value.trim();
+  if (url) localStorage.setItem(GAS_URL_KEY, url);
+  else localStorage.removeItem(GAS_URL_KEY);
+  location.reload();
+}
+
+/* ── DATA ── */
+function loadRegistrations() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+  catch { return {}; }
+}
+
+function refreshData() { renderStats(); renderSessions(); }
+
+/* ── STATS ── */
+function renderStats() {
+  const regs = loadRegistrations();
+  let totalRegs = 0, uniqueEmails = new Set(), emptySessions = 0;
+  SESSIONS.forEach(s => {
+    const arr = regs[s.id] || [];
+    totalRegs += arr.length;
+    arr.forEach(r => uniqueEmails.add(r.email));
+    if (!arr.length) emptySessions++;
+  });
+
+  document.getElementById("statsRow").innerHTML = `
+    <div class="stat-card"><div class="num">${totalRegs}</div><div class="lbl">Total Registrations</div></div>
+    <div class="stat-card"><div class="num">${uniqueEmails.size}</div><div class="lbl">Unique Attendees</div></div>
+    <div class="stat-card"><div class="num">${SESSIONS.length - emptySessions}</div><div class="lbl">Sessions with Sign-ups</div></div>
+    <div class="stat-card"><div class="num">${emptySessions}</div><div class="lbl">Sessions with No Sign-ups</div></div>
+  `;
+}
+
+/* ── SESSIONS ── */
+function renderSessions() {
+  const regs    = loadRegistrations();
+  const query   = document.getElementById("searchInput").value.toLowerCase();
+  const track   = document.getElementById("trackFilter").value;
+  const day     = document.getElementById("dayFilter").value;
+  const list    = document.getElementById("sessionsList");
+  const noRes   = document.getElementById("noResults");
+
+  let filtered = SESSIONS.filter(s => {
+    if (track && s.track !== track) return false;
+    if (day && s.day !== day) return false;
+    if (query) {
+      const sessionRegs = regs[s.id] || [];
+      const matchSession = s.title.toLowerCase().includes(query) || s.speaker.toLowerCase().includes(query);
+      const matchReg = sessionRegs.some(r => r.name.toLowerCase().includes(query) || r.email.includes(query));
+      if (!matchSession && !matchReg) return false;
+    }
+    return true;
+  });
+
+  if (!filtered.length) {
+    list.innerHTML = "";
+    noRes.style.display = "block";
+    return;
+  }
+  noRes.style.display = "none";
+
+  list.innerHTML = filtered.map(s => {
+    const arr = (regs[s.id] || []).filter(r => {
+      if (!query) return true;
+      return r.name.toLowerCase().includes(query) || r.email.includes(query);
+    });
+    const count = (regs[s.id] || []).length;
+
+    const rows = arr.length
+      ? arr.map((r, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${escHtml(r.name)}</td>
+            <td>${escHtml(r.email)}</td>
+            <td>${r.ts ? new Date(r.ts).toLocaleString() : "—"}</td>
+          </tr>`).join("")
+      : `<tr class="empty-row"><td colspan="4">No registrations yet</td></tr>`;
+
+    return `
+      <div class="session-block" id="block-${s.id}">
+        <div class="session-header" onclick="toggleBlock(${s.id})">
+          <div class="session-header-left">
+            <span class="track-pill track-${s.track}">${s.track}</span>
+            <h3>${escHtml(s.title)}</h3>
+          </div>
+          <span class="meta">${s.time} · ${s.room}</span>
+          <span class="reg-count ${count ? 'some' : 'zero'}">${count} registered</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="reg-table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Registered At</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function toggleBlock(id) {
+  document.getElementById(`block-${id}`).classList.toggle("open");
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ── CSV EXPORT ── */
+function exportCSV() {
+  const regs = loadRegistrations();
+  const rows = [["Session ID","Session Title","Track","Day","Time","Room","Registrant Name","Registrant Email","Registered At"]];
+  SESSIONS.forEach(s => {
+    const arr = regs[s.id] || [];
+    if (!arr.length) {
+      rows.push([s.id, s.title, s.track, s.day, s.time, s.room, "", "", ""]);
+    } else {
+      arr.forEach(r => {
+        rows.push([s.id, s.title, s.track, s.day, s.time, s.room, r.name, r.email, r.ts ? new Date(r.ts).toISOString() : ""]);
+      });
+    }
+  });
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `educon2026_registrations_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+/* ── AUTO-CHECK SESSION AUTH ON LOAD ── */
+if (sessionStorage.getItem(AUTH_KEY) === "1") {
+  document.getElementById("loginGate").classList.add("hidden");
+  document.getElementById("mainPage").style.display = "block";
+  initDashboard();
+} else {
+  setTimeout(() => document.getElementById("pwInput").focus(), 100);
+}
+</script>
+</body>
+</html>
