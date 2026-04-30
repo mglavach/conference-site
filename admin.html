@@ -132,14 +132,10 @@
     tr:hover td { background: #f8fafc; }
     .empty-row td { color: var(--muted); font-style: italic; text-align: center; padding: 1.5rem; }
 
-    /* ── TRACK PILL ── */
-    .track-pill { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: .15rem .55rem; border-radius: 12px; flex-shrink: 0; }
-    .track-Technology { background: #dbeafe; color: #1d4ed8; }
-    .track-Leadership { background: #ede9fe; color: #6d28d9; }
-    .track-Curriculum { background: #fef3c7; color: #92400e; }
-    .track-Wellbeing  { background: #d1fae5; color: #065f46; }
-    .track-Innovation { background: #fce7f3; color: #9d174d; }
-    .track-Keynote    { background: #e0f2fe; color: #0c4a6e; }
+    /* ── CATEGORY PILL ── */
+    .cat-Learn   { background: #dbeafe; color: #1d4ed8; }
+    .cat-Apply   { background: #d1fae5; color: #065f46; }
+    .cat-Discern { background: #ede9fe; color: #6d28d9; }
 
     .no-results { text-align: center; padding: 3rem; color: var(--muted); }
   </style>
@@ -189,54 +185,29 @@
 
   <!-- SEARCH + FILTER -->
   <div class="search-row">
-    <input type="text" id="searchInput" placeholder="Search by name or email..." oninput="renderSessions()" />
-    <select id="trackFilter" onchange="renderSessions()">
-      <option value="">All Tracks</option>
-      <option>Keynote</option>
-      <option>Technology</option>
-      <option>Leadership</option>
-      <option>Curriculum</option>
-      <option>Wellbeing</option>
-      <option>Innovation</option>
-    </select>
-    <select id="dayFilter" onchange="renderSessions()">
-      <option value="">All Days</option>
-      <option>Day 1 — Monday, June 15</option>
-      <option>Day 2 — Tuesday, June 16</option>
-      <option>Day 3 — Wednesday, June 17</option>
+    <input type="text" id="searchInput" placeholder="Search by name or email..." oninput="renderBreakouts()" />
+    <select id="catFilter" onchange="renderBreakouts()">
+      <option value="">All Categories</option>
+      <option>Learn</option>
+      <option>Apply</option>
+      <option>Discern</option>
     </select>
   </div>
 
-  <!-- SESSIONS LIST -->
+  <!-- BREAKOUT SESSION LIST -->
   <div id="sessionsList"></div>
   <div id="noResults" class="no-results" style="display:none;">No sessions match your filters.</div>
 </div>
 
 <script>
-/* ── SESSION DATA (must match index.html) ── */
-const SESSIONS = [
-  { id: 1,  day: "Day 1 — Monday, June 15",      time: "9:00 AM – 10:15 AM",  track: "Keynote",    title: "Opening Keynote: The Learning Revolution",              speaker: "Dr. Maya Chen",            room: "Main Hall" },
-  { id: 2,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Technology", title: "AI in the Classroom: Tools That Actually Work",         speaker: "Prof. James Okafor",       room: "Room 101" },
-  { id: 3,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Curriculum",  title: "Project-Based Learning at Scale",                       speaker: "Sarah Lindqvist",          room: "Room 205" },
-  { id: 4,  day: "Day 1 — Monday, June 15",      time: "11:00 AM – 12:00 PM", track: "Wellbeing",   title: "Building Trauma-Informed Schools",                      speaker: "Dr. Alicia Torres",        room: "Room 310" },
-  { id: 5,  day: "Day 1 — Monday, June 15",      time: "2:00 PM – 3:00 PM",   track: "Leadership",  title: "Instructional Coaching That Moves the Needle",          speaker: "Marcus Webb",              room: "Room 102" },
-  { id: 6,  day: "Day 1 — Monday, June 15",      time: "2:00 PM – 3:00 PM",   track: "Innovation",  title: "Maker Spaces on Any Budget",                            speaker: "Lisa Park",                room: "Room 212" },
-  { id: 7,  day: "Day 1 — Monday, June 15",      time: "3:15 PM – 4:15 PM",   track: "Technology",  title: "Data Literacy: Teaching Students to Question Numbers",  speaker: "Prof. James Okafor",       room: "Room 101" },
-  { id: 8,  day: "Day 1 — Monday, June 15",      time: "3:15 PM – 4:15 PM",   track: "Curriculum",  title: "Formative Assessment Without the Paper Stack",          speaker: "Dr. Robin Hayes",          room: "Room 205" },
-  { id: 9,  day: "Day 2 — Tuesday, June 16",     time: "9:00 AM – 10:00 AM",  track: "Keynote",    title: "Keynote: Equity as Infrastructure",                     speaker: "Dr. Kofi Mensah",          room: "Main Hall" },
-  { id: 10, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Leadership",  title: "Navigating Policy While Staying Student-Centered",     speaker: "Superintendent Priya Nair",room: "Room 102" },
-  { id: 11, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Technology",  title: "Cybersecurity and Digital Citizenship in K–12",        speaker: "Anna Kowalski",            room: "Room 101" },
-  { id: 12, day: "Day 2 — Tuesday, June 16",     time: "10:30 AM – 11:30 AM", track: "Wellbeing",   title: "Staff Burnout: Diagnosis and Recovery",                speaker: "Dr. Alicia Torres",        room: "Room 310" },
-  { id: 13, day: "Day 2 — Tuesday, June 16",     time: "1:30 PM – 3:00 PM",   track: "Curriculum",  title: "Workshop: Backward Design in 90 Minutes",              speaker: "Dr. Robin Hayes",          room: "Workshop A" },
-  { id: 14, day: "Day 2 — Tuesday, June 16",     time: "1:30 PM – 3:00 PM",   track: "Innovation",  title: "Workshop: Rapid Prototyping for Educators",            speaker: "Lisa Park",                room: "Workshop B" },
-  { id: 15, day: "Day 2 — Tuesday, June 16",     time: "3:15 PM – 4:15 PM",   track: "Leadership",  title: "Hiring for Culture and Competence",                    speaker: "Marcus Webb",              room: "Room 102" },
-  { id: 16, day: "Day 2 — Tuesday, June 16",     time: "3:15 PM – 4:15 PM",   track: "Technology",  title: "Immersive Learning: AR/VR Without the Hype",           speaker: "Anna Kowalski",            room: "Room 101" },
-  { id: 17, day: "Day 3 — Wednesday, June 17",   time: "9:00 AM – 10:00 AM",  track: "Keynote",    title: "Closing Keynote: Courage in the Classroom",            speaker: "Dr. Maya Chen",            room: "Main Hall" },
-  { id: 18, day: "Day 3 — Wednesday, June 17",   time: "10:30 AM – 11:30 AM", track: "Curriculum",  title: "Multilingual Learners: Beyond Compliance",             speaker: "Sarah Lindqvist",          room: "Room 205" },
-  { id: 19, day: "Day 3 — Wednesday, June 17",   time: "10:30 AM – 11:30 AM", track: "Wellbeing",   title: "Social-Emotional Learning That Isn't Cringe",         speaker: "Dr. Kofi Mensah",          room: "Room 310" },
-  { id: 20, day: "Day 3 — Wednesday, June 17",   time: "1:00 PM – 2:00 PM",   track: "Innovation",  title: "Student Voice in School Design",                       speaker: "Superintendent Priya Nair",room: "Room 212" },
-  { id: 21, day: "Day 3 — Wednesday, June 17",   time: "1:00 PM – 2:00 PM",   track: "Technology",  title: "The Accessible Classroom: Technology for Every Learner",speaker: "Prof. James Okafor",      room: "Room 101" },
-  { id: 22, day: "Day 3 — Wednesday, June 17",   time: "2:15 PM – 3:15 PM",   track: "Leadership",  title: "Leading Change Without Burning Bridges",               speaker: "Marcus Webb",              room: "Room 102" },
+/* ── BREAKOUT DATA (must match index.html) ── */
+const BREAKOUT_SESSIONS = [
+  {
+    id: 101,
+    category: "Learn",
+    title: "Cultivating Critical AI Literacy in the Classroom",
+    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School" },
+  },
 ];
 
 const STORAGE_KEY    = "educon2026_registrations";
@@ -291,7 +262,7 @@ function initDashboard() {
     banner.innerHTML = `<div class="gas-icon">✅</div><div style="flex:1;"><strong>Google Sheets connected</strong>New registrations from index.html are automatically written to your Sheet.<div class="gas-url-form"><input type="url" id="gasUrlInput" value="${gasUrl}" placeholder="https://script.google.com/macros/s/.../exec" /><button onclick="saveGasUrl()">Update</button></div></div>`;
   }
   renderStats();
-  renderSessions();
+  renderBreakouts();
 }
 
 /* ── GAS URL ── */
@@ -308,42 +279,40 @@ function loadRegistrations() {
   catch { return {}; }
 }
 
-function refreshData() { renderStats(); renderSessions(); }
+function refreshData() { renderStats(); renderBreakouts(); }
 
 /* ── STATS ── */
 function renderStats() {
   const regs = loadRegistrations();
-  let totalRegs = 0, uniqueEmails = new Set(), emptySessions = 0;
-  SESSIONS.forEach(s => {
+  let totalRegs = 0, uniqueEmails = new Set(), withSignups = 0;
+  BREAKOUT_SESSIONS.forEach(s => {
     const arr = regs[s.id] || [];
     totalRegs += arr.length;
     arr.forEach(r => uniqueEmails.add(r.email));
-    if (!arr.length) emptySessions++;
+    if (arr.length) withSignups++;
   });
 
   document.getElementById("statsRow").innerHTML = `
     <div class="stat-card"><div class="num">${totalRegs}</div><div class="lbl">Total Registrations</div></div>
     <div class="stat-card"><div class="num">${uniqueEmails.size}</div><div class="lbl">Unique Attendees</div></div>
-    <div class="stat-card"><div class="num">${SESSIONS.length - emptySessions}</div><div class="lbl">Sessions with Sign-ups</div></div>
-    <div class="stat-card"><div class="num">${emptySessions}</div><div class="lbl">Sessions with No Sign-ups</div></div>
+    <div class="stat-card"><div class="num">${withSignups}</div><div class="lbl">Sessions with Sign-ups</div></div>
+    <div class="stat-card"><div class="num">${BREAKOUT_SESSIONS.length - withSignups}</div><div class="lbl">Sessions with No Sign-ups</div></div>
   `;
 }
 
-/* ── SESSIONS ── */
-function renderSessions() {
-  const regs    = loadRegistrations();
-  const query   = document.getElementById("searchInput").value.toLowerCase();
-  const track   = document.getElementById("trackFilter").value;
-  const day     = document.getElementById("dayFilter").value;
-  const list    = document.getElementById("sessionsList");
-  const noRes   = document.getElementById("noResults");
+/* ── BREAKOUTS ── */
+function renderBreakouts() {
+  const regs  = loadRegistrations();
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const cat   = document.getElementById("catFilter").value;
+  const list  = document.getElementById("sessionsList");
+  const noRes = document.getElementById("noResults");
 
-  let filtered = SESSIONS.filter(s => {
-    if (track && s.track !== track) return false;
-    if (day && s.day !== day) return false;
+  let filtered = BREAKOUT_SESSIONS.filter(s => {
+    if (cat && s.category !== cat) return false;
     if (query) {
       const sessionRegs = regs[s.id] || [];
-      const matchSession = s.title.toLowerCase().includes(query) || s.speaker.toLowerCase().includes(query);
+      const matchSession = s.title.toLowerCase().includes(query) || s.speaker.name.toLowerCase().includes(query);
       const matchReg = sessionRegs.some(r => r.name.toLowerCase().includes(query) || r.email.includes(query));
       if (!matchSession && !matchReg) return false;
     }
@@ -378,10 +347,10 @@ function renderSessions() {
       <div class="session-block" id="block-${s.id}">
         <div class="session-header" onclick="toggleBlock(${s.id})">
           <div class="session-header-left">
-            <span class="track-pill track-${s.track}">${s.track}</span>
+            <span class="track-pill cat-${s.category}" style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:.15rem .55rem;border-radius:12px;">${s.category}</span>
             <h3>${escHtml(s.title)}</h3>
           </div>
-          <span class="meta">${s.time} · ${s.room}</span>
+          <span class="meta">${escHtml(s.speaker.name)} — ${escHtml(s.speaker.org)}</span>
           <span class="reg-count ${count ? 'some' : 'zero'}">${count} registered</span>
           <span class="chevron">▼</span>
         </div>
@@ -406,14 +375,14 @@ function escHtml(str) {
 /* ── CSV EXPORT ── */
 function exportCSV() {
   const regs = loadRegistrations();
-  const rows = [["Session ID","Session Title","Track","Day","Time","Room","Registrant Name","Registrant Email","Registered At"]];
-  SESSIONS.forEach(s => {
+  const rows = [["Session ID","Session Title","Category","Speaker","Organization","Registrant Name","Registrant Email","Registered At"]];
+  BREAKOUT_SESSIONS.forEach(s => {
     const arr = regs[s.id] || [];
     if (!arr.length) {
-      rows.push([s.id, s.title, s.track, s.day, s.time, s.room, "", "", ""]);
+      rows.push([s.id, s.title, s.category, s.speaker.name, s.speaker.org, "", "", ""]);
     } else {
       arr.forEach(r => {
-        rows.push([s.id, s.title, s.track, s.day, s.time, s.room, r.name, r.email, r.ts ? new Date(r.ts).toISOString() : ""]);
+        rows.push([s.id, s.title, s.category, s.speaker.name, s.speaker.org, r.name, r.email, r.ts ? new Date(r.ts).toISOString() : ""]);
       });
     }
   });
@@ -421,7 +390,7 @@ function exportCSV() {
   const blob = new Blob([csv], { type: "text/csv" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = `educon2026_registrations_${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `aiwithpurpose2026_registrations_${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
 
