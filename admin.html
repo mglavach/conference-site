@@ -208,9 +208,51 @@ const BREAKOUT_SESSIONS = [
     title: "Cultivating Critical AI Literacy in the Classroom",
     speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School" },
   },
+  {
+    id: 102,
+    category: "Learn",
+    title: "Conceptual Introduction to AI for our Youngest Learners",
+    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School" },
+  },
+  {
+    id: 103,
+    category: "Apply",
+    title: "Using AI in Math Classrooms (Snorkl and FlintK12)",
+    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School" },
+  },
+  {
+    id: 104,
+    category: "Apply",
+    title: "Build Your Own AI Classroom Assistant",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "" },
+  },
+  {
+    id: 105,
+    category: "Learn",
+    title: "Building Proficiency in Coding through Experimentation with Art and Music",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "" },
+  },
+  {
+    id: 106,
+    category: "Apply",
+    title: "Flint K12",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "" },
+  },
+  {
+    id: 107,
+    category: "Apply",
+    title: "Differentiating Instruction with AI",
+    speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "" },
+  },
+  {
+    id: 108,
+    category: "Discern",
+    title: "A Continuous Framework for Sustainable AI Growth",
+    speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "" },
+  },
 ];
 
-const STORAGE_KEY    = "educon2026_registrations";
+const STORAGE_KEY    = "aiwithpurpose2026_registrations";
 const AUTH_KEY       = "educon2026_admin_auth";
 const GAS_URL_KEY    = "educon2026_gas_url";
 /* ── Change this hash to set a new password.
@@ -362,7 +404,7 @@ async function renderBreakouts() {
             <span class="track-pill cat-${s.category}" style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:.15rem .55rem;border-radius:12px;">${s.category}</span>
             <h3>${escHtml(s.title)}</h3>
           </div>
-          <span class="meta">${escHtml(s.speaker.name)} — ${escHtml(s.speaker.org)}</span>
+          <span class="meta">${escHtml(s.speaker.name)}${s.speaker.org ? ' — ' + escHtml(s.speaker.org) : ''}</span>
           <span class="reg-count ${count ? 'some' : 'zero'}">${count} registered</span>
           <span class="chevron">▼</span>
         </div>

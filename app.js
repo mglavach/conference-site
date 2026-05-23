@@ -1,17 +1,78 @@
 /* ── DATA ── */
 
 const SPEAKERS = [
-  { name: "Jordanna Court",    role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School",             color: "#B9975B", init: "JC", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
-  { name: "Mrs. Lisa Garrido", role: "Biology Teacher",                                              org: "Westminster Christian School",   color: "#2c5234", init: "LG", linkedin: "https://www.linkedin.com/in/lisa-garrido-bb5b1036/" },
+  { name: "Jordanna Court",    role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School",             color: "#B9975B", init: "JC", linkedin: "https://www.linkedin.com/in/jordannacourt/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQGiplutwyeW5A/profile-displayphoto-crop_800_800/B4EZnABeAoIUAI-/0/1759863234951?e=1781136000&v=beta&t=TAerFchqiUdX4mlncKpVRANwmOMyyzQjDKGIGBzYmfU" },
+  { name: "Lisa Garrido", role: "Biology Teacher",                                              org: "Westminster Christian School",   color: "#2c5234", init: "LG", linkedin: "https://www.linkedin.com/in/lisa-garrido-bb5b1036/", photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425075_646.jpg?resize=200,200" },
+  { name: "Jessie Metzger",    role: "AI Education Specialist",                                       org: "Pine Crest School",                              color: "#5b72b0", init: "JM", linkedin: "https://www.linkedin.com/in/jessiemetzger/", photo: "https://media.licdn.com/dms/image/v2/C5603AQGB8BKl_6Cu-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1555465007486?e=1781136000&v=beta&t=kDLYrC8CLn7qN4HTpFgevntM5Jx-ko_8FAwk99eiUSM" },
+  { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant",                      org: "Pine Crest School",                              color: "#b34740", init: "KS", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/", photo: "https://media.licdn.com/dms/image/v2/C4D03AQHhCl_nmpRT2g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1633690650159?e=1781136000&v=beta&t=Ja2wiprbSEg3qzcB4_547PZN1f-gus_KuFCGn0qms5g" },
+  { name: "Victoria Rose Thompson", role: "Speaker",                                                 org: "",                              color: "#3d9970", init: "VT", linkedin: "https://www.linkedin.com/in/victoriarosethompson/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQEgD9muALquUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692372577418?e=1781136000&v=beta&t=QLwdomMgjyISRN1HhS1qtzNoUXasHhyIWFLc9Rb_qNg" },
+  { name: "Geri Gillespy",         role: "Speaker",                                                 org: "",                              color: "#4c7d5c", init: "GG", linkedin: "https://www.linkedin.com/in/gerigillespy/", photo: "https://media.licdn.com/dms/image/v2/D5603AQFZcr7x8WIA1A/profile-displayphoto-crop_800_800/B56ZiVUsZXHkAI-/0/1754851888579?e=1781136000&v=beta&t=kYxqJJFUt2Kg8pJo-2lVbyZthSuwzFbY8MmFFCJHVMc" },
 ];
 
 const BREAKOUT_SESSIONS = [
   {
     id: 101,
     category: "Learn",
+    grade: "All Grade Levels",
     title: "Cultivating Critical AI Literacy in the Classroom",
     desc: "This hands-on session will equip educators with practical strategies for teaching students how to become analytical users of generative AI across various subject areas. Attendees will explore essential AI Literacy skills, including prompt engineering and critical analysis, to help students move from passive consumption to active collaboration. Key concepts covered include algorithmic bias analysis, data synthesis, and the ethical use of AI. Participants will leave with lesson ideas designed to empower students to leverage AI as a sophisticated research and thinking partner, developing crucial critical thinking and discernment skills for the new era of education.",
     speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+  },
+  {
+    id: 102,
+    category: "Learn",
+    grade: "PreK – 2",
+    title: "Conceptual Introduction to AI for our Youngest Learners",
+    desc: "A gentle, age-appropriate exploration of AI concepts designed for PreK–2 classrooms. Educators will leave with ways to introduce foundational AI ideas through stories, play, and early literacy experiences.",
+    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+  },
+  {
+    id: 103,
+    category: "Apply",
+    grade: "Grades 4 and up FlintK12 / All Grade Levels Snorkl",
+    title: "Using AI in Math Classrooms (Snorkl and FlintK12)",
+    desc: "Practical strategies for using Snorkl across all grade levels and FlintK12 for grades 4 and up. Learn how to leverage AI tools to support math fluency, student agency, and meaningful computation practice.",
+    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+  },
+  {
+    id: 104,
+    category: "Apply",
+    grade: "All Grade Levels",
+    title: "Build Your Own AI Classroom Assistant",
+    desc: "Design your own classroom assistant using AI tools, templates, and workflows that make planning, differentiation, and student support more manageable across subjects.",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "Pine Crest School", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+  },
+  {
+    id: 105,
+    category: "Learn",
+    grade: "Middle and Upper School",
+    title: "Building Proficiency in Coding through Experimentation with Art and Music",
+    desc: "Explore how coding proficiency grows when students design with art and music. This session highlights creative, project-based learning pathways for middle and upper school learners.",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+  },
+  {
+    id: 106,
+    category: "Apply",
+    grade: "Middle and Upper School",
+    title: "Flint K12",
+    desc: "An applied walkthrough of Flint K12 that demonstrates how AI can support student inquiry, feedback cycles, and personalized learning in middle and upper school classrooms.",
+    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+  },
+  {
+    id: 107,
+    category: "Apply",
+    grade: "All Grade Levels",
+    title: "Differentiating Instruction with AI",
+    desc: "Discover approaches to use AI for personalized learning pathways, flexible scaffolding, and meaningful differentiation that honors each learner's strengths and needs.",
+    speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "Pine Crest School", init: "JM", color: "#5b72b0", linkedin: "https://www.linkedin.com/in/jessiemetzger/" },
+  },
+  {
+    id: 108,
+    category: "Discern",
+    grade: "Administrator Session",
+    title: "A Continuous Framework for Sustainable AI Growth",
+    desc: "A leadership-focused session for administrators and instructional leaders exploring long-term frameworks for embedding AI thoughtfully and sustainably across school culture and curriculum.",
+    speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "Pine Crest School", init: "JM", color: "#5b72b0", linkedin: "https://www.linkedin.com/in/jessiemetzger/" },
   },
 ];
 
@@ -75,17 +136,26 @@ function renderBreakouts() {
     const sp = b.speaker;
     return `
       <div class="breakout-card ${userRegistered ? 'registered' : ''}" id="card-${b.id}">
-        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
-          <span class="cat-pill cat-${b.category}">${b.category}</span>
+        <div class="breakout-card-top">
+          <div class="breakout-tags">
+            <span class="cat-pill cat-${b.category}">${b.category}</span>
+            ${b.grade ? `<span class="grade-pill">${b.grade}</span>` : ''}
+          </div>
+          <h3>${b.title}</h3>
+          <div class="speaker-top">
+            <div class="bs-avatar" style="background:${sp.color}">${sp.init}</div>
+            <div>
+              <div class="bs-name">${sp.name}</div>
+              ${sp.org ? `<div class="bs-role">${sp.org}</div>` : ''}
+            </div>
+          </div>
         </div>
-        <h3>${b.title}</h3>
         <div class="desc">${b.desc}</div>
         <a class="breakout-speaker" href="${sp.linkedin}" target="_blank" rel="noopener noreferrer">
-          <div class="bs-avatar" style="background:${sp.color}">${sp.init}</div>
           <div>
             <div class="bs-name">${sp.name}</div>
             <div class="bs-role">${sp.role}</div>
-            <div class="bs-role">${sp.org}</div>
+            ${sp.org ? `<div class="bs-role">${sp.org}</div>` : ''}
             <div class="bs-linkedin">View LinkedIn →</div>
           </div>
         </a>
@@ -107,15 +177,23 @@ document.getElementById("breakoutFilter").addEventListener("click", e => {
 
 /* ── RENDER SPEAKERS ── */
 function renderSpeakers() {
-  document.getElementById("speakersGrid").innerHTML = SPEAKERS.map(sp => `
-    <a class="speaker-card" href="${sp.linkedin || '#'}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
-      <div class="speaker-avatar" style="background:${sp.color}">${sp.init}</div>
-      <h3>${sp.name}</h3>
-      ${sp.role ? `<p>${sp.role}</p>` : ''}
-      ${sp.org  ? `<p>${sp.org}</p>`  : ''}
-      ${sp.linkedin ? `<p style="font-size:.75rem;color:var(--blue);margin-top:.4rem;">View LinkedIn →</p>` : ''}
-    </a>
-  `).join("");
+  document.getElementById("speakersGrid").innerHTML = SPEAKERS.map(sp => {
+    const avatar = sp.photo
+      ? `<img class="speaker-avatar speaker-photo" src="${sp.photo}" alt="${sp.name}" />`
+      : `<div class="speaker-avatar speaker-initials" style="background:${sp.color}">${sp.init}</div>`;
+
+    return `
+      <div class="speaker-card">
+        ${avatar}
+        <div class="speaker-meta">
+          <h3>${sp.name}</h3>
+          ${sp.org ? `<p class="speaker-school">${sp.org}</p>` : ''}
+          ${sp.role ? `<p class="speaker-title">${sp.role}</p>` : ''}
+        </div>
+        ${sp.linkedin ? `<a class="speaker-link" href="${sp.linkedin}" target="_blank" rel="noopener noreferrer">View LinkedIn →</a>` : ''}
+      </div>
+    `;
+  }).join("");
 }
 
 /* ── MODAL ── */
