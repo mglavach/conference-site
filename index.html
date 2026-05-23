@@ -12,17 +12,18 @@
 <nav>
   <span class="brand">AI with Purpose 2026</span>
   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#breakouts">Breakouts</a></li>
-    <li><a href="#speakers">Speaker</a></li>
+    <li><a href="#about">The Conference</a></li>
     <li><a href="#venue">Venue</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#breakouts">Breakouts</a></li>
+    <li><a href="#conference-team">About Us</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div class="badge">Westminster Christian School — WCS Educator Conference</div>
-  <h1>Artificial Intelligence<br/><span>with Purpose</span></h1>
+  <h1>ARTIFICIAL INTELLIGENCE<br/><span>WITH PURPOSE</span></h1>
   <p>Equipping Educators for Today's Classroom, Raising Ambassadors for Christ for Tomorrow's World</p>
   <div class="hero-meta">
     <div class="chip">August 5, 2026</div>
@@ -48,7 +49,7 @@
   <div class="about-grid">
     <div class="about-card">
       <h3>Faith-Centered Foundation</h3>
-      <p>As those created by God to create, educators are uniquely positioned to steward emerging technologies like AI with wisdom, discernment, and faith — without compromising truth or our Christ-centered mission.</p>
+      <p>As those created by God to create, educators are uniquely positioned to steward emerging technologies like AI with wisdom, discernment, and faith without compromising truth or our Christ-centered mission.</p>
     </div>
     <div class="about-card">
       <h3>Purposeful AI Integration</h3>
@@ -56,12 +57,41 @@
     </div>
     <div class="about-card">
       <h3>Hands-On Workshops</h3>
-      <p>Interactive sessions led by practitioners who have implemented AI thoughtfully in Christian school settings — practical strategies grounded in pedagogy and mission.</p>
+      <p>Interactive sessions led by practitioners who have implemented AI thoughtfully in Christian school settings as well as AI Education specialists from Microsoft and Pine Crest schools. Practical strategies grounded in pedagogy and mission will be provided.</p>
     </div>
     <div class="about-card">
       <h3>Forming Ambassadors</h3>
       <p>We will focus on purposeful innovation that forms students as thoughtful learners, ethical leaders, and ambassadors for Christ prepared to engage tomorrow's world with confidence, compassion, and excellence.</p>
     </div>
+  </div>
+
+  <!-- VENUE — nested inside About -->
+  <div id="venue" class="venue-subsection">
+    <div class="venue-subsection-header">
+      <div class="section-title" style="font-size:1.4rem;">Venue</div>
+      <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Everything you need to know about getting there and getting around.</p>
+    </div>
+    <div class="venue-block">
+      <div class="venue-info">
+        <h3>Westminster Christian School — HS Campus</h3>
+        <p>6855 SW 152nd Street, Palmetto Bay, FL 33157</p>
+        <p>Free parking available on campus</p>
+        <p>August 5, 2026 — 8:00 AM to 4:30 PM</p>
+        <p>Breakfast and lunch provided for all registered attendees</p>
+        <p style="margin-top: 1rem; font-size: .85rem; color: var(--muted);">Room assignments are included in your confirmation email after you register for individual sessions.</p>
+      </div>
+      <div class="venue-map">
+        <!-- Save the campus map image as campus-map.jpg in this project folder -->
+        <img src="campus-map.jpg.png" alt="Westminster Christian School Campus Map" class="campus-map-img" />
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED SPEAKERS — nested inside About -->
+  <div id="speakers" class="venue-subsection">
+    <div class="section-title" style="font-size:1.4rem;">Featured Speakers</div>
+    <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Christian educators and AI practitioners leading our sessions.</p>
+    <div class="speakers-grid" id="speakersGrid"></div>
   </div>
 </section>
 
@@ -104,36 +134,57 @@
   </div>
 </section>
 
-<!-- SPEAKERS -->
-<section class="section" id="speakers">
-  <div class="section-title">Featured Speakers</div>
-  <p class="section-sub">Christian educators, theologians, and AI practitioners leading our sessions.</p>
-  <div class="speakers-grid" id="speakersGrid"></div>
-</section>
 
-<!-- VENUE -->
-<section class="section" id="venue">
-  <div class="section-title">Venue</div>
-  <p class="section-sub">Everything you need to know about getting there and getting around.</p>
-  <div class="venue-block">
-    <div class="venue-map" style="background:#1e3a24;">
-      <img src="https://csfla.org/assets/images/schools/logos/westminster-christian-logo.png" alt="Westminster Christian School" style="max-width:180px; max-height:130px; object-fit:contain;" />
+
+<!-- ABOUT US -->
+<section class="section about-us-section" id="conference-team">
+  <div class="section-title">About Us</div>
+
+  <div class="about-us-grid">
+
+    <div class="about-us-card about-us-school">
+      <div class="about-us-logo">
+        <img src="https://csfla.org/assets/images/schools/logos/westminster-christian-logo.png" alt="Westminster Christian School" />
+      </div>
+      <div class="about-us-text">
+        <h3>Westminster Christian School</h3>
+        <p>Westminster Christian School is a PK–12 independent Christian school located in Palmetto Bay, Florida. Rooted in a Christ-centered mission and committed to academic excellence, WCS prepares students to be ambassadors for Christ — thinking critically, serving compassionately, and engaging the world with confidence and conviction.</p>
+        <p>As a community of educators who take seriously our call to be faithful stewards of every resource and opportunity, Westminster is committed to engaging emerging technologies — like artificial intelligence — thoughtfully, biblically, and purposefully.</p>
+        <a class="about-us-link" href="https://www.wcsmiami.org" target="_blank" rel="noopener noreferrer">Visit wcsmiami.org →</a>
+      </div>
     </div>
-    <div class="venue-info">
-      <h3>Westminster Christian School — HS Campus</h3>
-      <p>6855 SW 152nd Street, Palmetto Bay, FL 33157</p>
-      <p>Free parking available on campus</p>
-      <p>August 5, 2026 — 8:00 AM to 4:30 PM</p>
-      <p>Breakfast and lunch provided for all registered attendees</p>
-      <p style="margin-top: 1rem; font-size: .85rem; color: var(--muted);">Room assignments are included in your confirmation email after you register for individual sessions.</p>
+
+    <div class="about-us-card about-us-mission">
+      <h3>Why This Conference</h3>
+      <p>AI with Purpose grew out of a simple conviction: Christian educators deserve a space to wrestle honestly with emerging technology — not from fear, but from faith. We believe that those who are called to form the next generation cannot afford to ignore the tools shaping the world our students will inhabit.</p>
+      <p>This conference brings together Christian educators, AI specialists, and school leaders to ask harder questions, share practical strategies, and leave better equipped to steward technology in a way that honors God and serves students.</p>
     </div>
+
+    <div class="about-us-card about-us-contact">
+      <h3>Get in Touch</h3>
+      <p>Have questions about the conference, sessions, or registration? We'd love to hear from you.</p>
+      <ul class="about-us-contact-list">
+        <li><strong>Email:</strong> <a href="mailto:conference@wcsmiami.org">conference@wcsmiami.org</a></li>
+        <li><strong>School:</strong> Westminster Christian School</li>
+        <li><strong>Location:</strong> 6855 SW 152nd Street, Palmetto Bay, FL 33157</li>
+        <li><strong>Conference Date:</strong> August 5, 2026</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- THE TEAM -->
+  <div class="venue-subsection">
+    <div class="section-title" style="font-size:1.4rem; color:#2c5234;">The Team</div>
+    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">The Westminster Christian School educators and leaders behind <em>Artificial Intelligence with Purpose</em>.</p>
+    <div class="speakers-grid" id="teamGrid"></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <strong>Artificial Intelligence with Purpose</strong> — Westminster Christian School 2026<br/>
-  <span>Questions? Contact <a href="mailto:conference@wcsmiami.org" style="color:#93c5fd;">conference@wcsmiami.org</a></span><br/>
+  <span>Questions? Contact <a href="mailto:conference@wcsmiami.org" style="color:#2c5234;">conference@wcsmiami.org</a></span><br/>
   <span style="opacity:.4;font-size:.75rem;margin-top:.5rem;display:inline-block;"><a href="admin.html" style="color:inherit;">Admin</a></span>
 </footer>
 

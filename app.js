@@ -1,12 +1,23 @@
 /* ── DATA ── */
 
+/* Conference Team — alphabetical by last name */
+const TEAM_MEMBERS = [
+  { name: "Madeline Dirube",  title: "TBD",                      org: "Westminster Christian School", color: "#5b72b0", init: "MD", linkedin: "https://www.linkedin.com/in/madeline-d-ab13a794/",       photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425064_620.jpg?resize=200,200" },
+  { name: "Manya Glavach",    title: "TBD",                      org: "Westminster Christian School", color: "#B9975B", init: "MG", linkedin: "https://www.linkedin.com/in/manyaglavach/",                 photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3553023_661.jpg?resize=200,200" },
+  { name: "Scott Jones",      title: "Head of School",           org: "Westminster Christian School", color: "#2c5234", init: "SJ", linkedin: "https://www.linkedin.com/in/scott-jones-1a771812/",         photo: "https://media.licdn.com/dms/image/v2/C4D03AQGxZ-IRBBHHGA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516430043034?e=1781136000&v=beta&t=67JLf051Uqx-6d5TQl-3WIkGV7T0hXnBHIDBLwiMdAg" },
+  { name: "David Medder",     title: "Associate Head of School", org: "Westminster Christian School", color: "#3d9970", init: "DM", linkedin: "https://www.linkedin.com/in/david-medder-021b9521b/",       photo: "" },
+  { name: "Claudia Pastrana", title: "TBD",                      org: "Westminster Christian School", color: "#b34740", init: "CP", linkedin: "https://www.linkedin.com/in/claudia-pastrana-3252a480/",     photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3454399_52.jpg?resize=200,200" },
+  { name: "Omar Valerio",     title: "CIO",                      org: "Westminster Christian School", color: "#4c7d5c", init: "OV", linkedin: "https://www.linkedin.com/in/omar-valerio-mvp-43bb2617/",     photo: "https://media.licdn.com/dms/image/v2/C4D03AQEbQj_IM3kL0g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516771707250?e=1781136000&v=beta&t=c8oC014FIYrcOAFJqyRCnFODEOUHah9EQcvsMdJO454" },
+  { name: "Linda Walker",     title: "Curriculum Director",      org: "Westminster Christian School", color: "#7c5c3c", init: "LW", linkedin: "https://www.linkedin.com/in/linda-walker-96535455/",         photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425173_911.jpg?resize=200,200" },
+];
+
 const SPEAKERS = [
-  { name: "Jordanna Court",    role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School",             color: "#B9975B", init: "JC", linkedin: "https://www.linkedin.com/in/jordannacourt/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQGiplutwyeW5A/profile-displayphoto-crop_800_800/B4EZnABeAoIUAI-/0/1759863234951?e=1781136000&v=beta&t=TAerFchqiUdX4mlncKpVRANwmOMyyzQjDKGIGBzYmfU" },
-  { name: "Lisa Garrido", role: "Biology Teacher",                                              org: "Westminster Christian School",   color: "#2c5234", init: "LG", linkedin: "https://www.linkedin.com/in/lisa-garrido-bb5b1036/", photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425075_646.jpg?resize=200,200" },
-  { name: "Jessie Metzger",    role: "AI Education Specialist",                                       org: "Pine Crest School",                              color: "#5b72b0", init: "JM", linkedin: "https://www.linkedin.com/in/jessiemetzger/", photo: "https://media.licdn.com/dms/image/v2/C5603AQGB8BKl_6Cu-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1555465007486?e=1781136000&v=beta&t=kDLYrC8CLn7qN4HTpFgevntM5Jx-ko_8FAwk99eiUSM" },
-  { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant",                      org: "Pine Crest School",                              color: "#b34740", init: "KS", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/", photo: "https://media.licdn.com/dms/image/v2/C4D03AQHhCl_nmpRT2g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1633690650159?e=1781136000&v=beta&t=Ja2wiprbSEg3qzcB4_547PZN1f-gus_KuFCGn0qms5g" },
-  { name: "Victoria Rose Thompson", role: "Speaker",                                                 org: "",                              color: "#3d9970", init: "VT", linkedin: "https://www.linkedin.com/in/victoriarosethompson/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQEgD9muALquUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692372577418?e=1781136000&v=beta&t=QLwdomMgjyISRN1HhS1qtzNoUXasHhyIWFLc9Rb_qNg" },
-  { name: "Geri Gillespy",         role: "Speaker",                                                 org: "",                              color: "#4c7d5c", init: "GG", linkedin: "https://www.linkedin.com/in/gerigillespy/", photo: "https://media.licdn.com/dms/image/v2/D5603AQFZcr7x8WIA1A/profile-displayphoto-crop_800_800/B56ZiVUsZXHkAI-/0/1754851888579?e=1781136000&v=beta&t=kYxqJJFUt2Kg8pJo-2lVbyZthSuwzFbY8MmFFCJHVMc" },
+  { name: "Jordanna Court",         role: "AI Education Specialist",    org: "Pine Crest School",           color: "#B9975B", init: "JC", linkedin: "https://www.linkedin.com/in/jordannacourt/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQGiplutwyeW5A/profile-displayphoto-crop_800_800/B4EZnABeAoIUAI-/0/1759863234951?e=1781136000&v=beta&t=TAerFchqiUdX4mlncKpVRANwmOMyyzQjDKGIGBzYmfU" },
+  { name: "Lisa Garrido",           role: "Biology Teacher",             org: "Westminster Christian School", color: "#2c5234", init: "LG", linkedin: "https://www.linkedin.com/in/lisa-garrido-bb5b1036/", photo: "https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425075_646.jpg?resize=200,200" },
+  { name: "Geri Gillespy",          role: "Senior Executive",            org: "Microsoft Elevate",            color: "#4c7d5c", init: "GG", linkedin: "https://www.linkedin.com/in/gerigillespy/", photo: "https://media.licdn.com/dms/image/v2/D5603AQFZcr7x8WIA1A/profile-displayphoto-crop_800_800/B56ZiVUsZXHkAI-/0/1754851888579?e=1781136000&v=beta&t=kYxqJJFUt2Kg8pJo-2lVbyZthSuwzFbY8MmFFCJHVMc" },
+  { name: "Jessie Metzger",         role: "AI Education Specialist",    org: "Pine Crest School",            color: "#5b72b0", init: "JM", linkedin: "https://www.linkedin.com/in/jessiemetzger/", photo: "https://media.licdn.com/dms/image/v2/C5603AQGB8BKl_6Cu-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1555465007486?e=1781136000&v=beta&t=kDLYrC8CLn7qN4HTpFgevntM5Jx-ko_8FAwk99eiUSM" },
+  { name: "Kelly Schuster-Paredes", role: "AI Education Specialist",    org: "Pine Crest School",            color: "#b34740", init: "KS", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/", photo: "https://media.licdn.com/dms/image/v2/C4D03AQHhCl_nmpRT2g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1633690650159?e=1781136000&v=beta&t=Ja2wiprbSEg3qzcB4_547PZN1f-gus_KuFCGn0qms5g" },
+  { name: "Victoria Rose Thompson", role: "Education Strategist",       org: "CDW",                          color: "#3d9970", init: "VT", linkedin: "https://www.linkedin.com/in/victoriarosethompson/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQEgD9muALquUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692372577418?e=1781136000&v=beta&t=QLwdomMgjyISRN1HhS1qtzNoUXasHhyIWFLc9Rb_qNg" },
 ];
 
 const BREAKOUT_SESSIONS = [
@@ -16,7 +27,7 @@ const BREAKOUT_SESSIONS = [
     grade: "All Grade Levels",
     title: "Cultivating Critical AI Literacy in the Classroom",
     desc: "This hands-on session will equip educators with practical strategies for teaching students how to become analytical users of generative AI across various subject areas. Attendees will explore essential AI Literacy skills, including prompt engineering and critical analysis, to help students move from passive consumption to active collaboration. Key concepts covered include algorithmic bias analysis, data synthesis, and the ethical use of AI. Participants will leave with lesson ideas designed to empower students to leverage AI as a sophisticated research and thinking partner, developing crucial critical thinking and discernment skills for the new era of education.",
-    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+    speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
   },
   {
     id: 102,
@@ -24,15 +35,15 @@ const BREAKOUT_SESSIONS = [
     grade: "PreK – 2",
     title: "Conceptual Introduction to AI for our Youngest Learners",
     desc: "A gentle, age-appropriate exploration of AI concepts designed for PreK–2 classrooms. Educators will leave with ways to introduce foundational AI ideas through stories, play, and early literacy experiences.",
-    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+    speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
   },
   {
     id: 103,
     category: "Apply",
-    grade: "Grades 4 and up FlintK12 / All Grade Levels Snorkl",
+    grade: "All Grade Levels",
     title: "Using AI in Math Classrooms (Snorkl and FlintK12)",
     desc: "Practical strategies for using Snorkl across all grade levels and FlintK12 for grades 4 and up. Learn how to leverage AI tools to support math fluency, student agency, and meaningful computation practice.",
-    speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
+    speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" },
   },
   {
     id: 104,
@@ -40,7 +51,7 @@ const BREAKOUT_SESSIONS = [
     grade: "All Grade Levels",
     title: "Build Your Own AI Classroom Assistant",
     desc: "Design your own classroom assistant using AI tools, templates, and workflows that make planning, differentiation, and student support more manageable across subjects.",
-    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "Pine Crest School", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+    speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "Pine Crest School", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
   },
   {
     id: 105,
@@ -48,7 +59,7 @@ const BREAKOUT_SESSIONS = [
     grade: "Middle and Upper School",
     title: "Building Proficiency in Coding through Experimentation with Art and Music",
     desc: "Explore how coding proficiency grows when students design with art and music. This session highlights creative, project-based learning pathways for middle and upper school learners.",
-    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+    speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
   },
   {
     id: 106,
@@ -56,7 +67,7 @@ const BREAKOUT_SESSIONS = [
     grade: "Middle and Upper School",
     title: "Flint K12",
     desc: "An applied walkthrough of Flint K12 that demonstrates how AI can support student inquiry, feedback cycles, and personalized learning in middle and upper school classrooms.",
-    speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
+    speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" },
   },
   {
     id: 107,
@@ -267,6 +278,27 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove("show"), 5000);
 }
 
+/* ── RENDER CONFERENCE TEAM ── */
+function renderTeam() {
+  document.getElementById("teamGrid").innerHTML = TEAM_MEMBERS.map(m => {
+    const avatar = m.photo
+      ? `<img class="speaker-avatar speaker-photo" src="${m.photo}" alt="${m.name}" />`
+      : `<div class="speaker-avatar speaker-initials" style="background:${m.color}">${m.init}</div>`;
+    return `
+      <div class="speaker-card">
+        ${avatar}
+        <div class="speaker-meta">
+          <h3>${m.name}</h3>
+          ${m.org  ? `<p class="speaker-school">${m.org}</p>`  : ''}
+          ${m.title ? `<p class="speaker-title">${m.title}</p>` : ''}
+        </div>
+        ${m.linkedin ? `<a class="speaker-link" href="${m.linkedin}" target="_blank" rel="noopener noreferrer">View LinkedIn →</a>` : ''}
+      </div>
+    `;
+  }).join("");
+}
+
 /* ── INIT ── */
 renderBreakouts();
 renderSpeakers();
+renderTeam();
