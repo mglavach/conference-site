@@ -20,6 +20,15 @@ const SPEAKERS = [
   { name: "Victoria Rose Thompson", role: "Education Strategist",       org: "CDW",                          color: "#3d9970", init: "VT", linkedin: "https://www.linkedin.com/in/victoriarosethompson/", photo: "https://media.licdn.com/dms/image/v2/D4E03AQEgD9muALquUg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1692372577418?e=1781136000&v=beta&t=QLwdomMgjyISRN1HhS1qtzNoUXasHhyIWFLc9Rb_qNg" },
 ];
 
+/* Attending schools — alphabetical (sort by first significant word, ignoring "The") */
+const ATTENDING_SCHOOLS = [
+  { name: "Avant School of Excellence",  url: "https://avantschoolsfloridacity.org/", logo: "", color: "#2c5234", init: "AS" },
+  { name: "The Divine Savior School",    url: "https://www.thedivinesaviorschool.com/",                                      logo: "", color: "#B9975B", init: "DS" },
+  { name: "Holy Cross Lutheran School",  url: "https://www.holycrosslions.org/",                                      logo: "", color: "#5b72b0", init: "HC" },
+  { name: "King's Christian School",     url: "https://www.kcsmiami.com/",                                      logo: "", color: "#4c7d5c", init: "KC" },
+  { name: "KUMC Preschool",             url: "https://www.kendallchurch.org/preschool.php",                                      logo: "", color: "#b34740", init: "KP" },
+];
+
 const BREAKOUT_SESSIONS = [
   {
     id: 101,
@@ -298,7 +307,26 @@ function renderTeam() {
   }).join("");
 }
 
+/* ── RENDER ATTENDING SCHOOLS ── */
+function renderAttendees() {
+  document.getElementById("attendeesSchoolsGrid").innerHTML = ATTENDING_SCHOOLS.map(s => {
+    const avatar = s.logo
+      ? `<img class="speaker-avatar speaker-photo" src="${s.logo}" alt="${s.name}" />`
+      : `<div class="speaker-avatar speaker-initials" style="background:${s.color}">${s.init}</div>`;
+    return `
+      <div class="speaker-card">
+        ${avatar}
+        <div class="speaker-meta">
+          <h3>${s.name}</h3>
+        </div>
+        ${s.url ? `<a class="speaker-link" href="${s.url}" target="_blank" rel="noopener noreferrer">Visit Website →</a>` : ''}
+      </div>
+    `;
+  }).join("");
+}
+
 /* ── INIT ── */
 renderBreakouts();
 renderSpeakers();
 renderTeam();
+renderAttendees();
