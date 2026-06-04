@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.wcsmiami.org)",
+      "WebFetch(domain:wcsmiami.org)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\\\\conference-site\" add .)",
+      "Bash(git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\\\\conference-site\" commit -m \"Update index\")",
+      "Bash(git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\\\\conference-site\" push)"
+    ]
+  }
+}

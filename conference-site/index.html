@@ -15,6 +15,7 @@
     <li><a href="#about">The Conference</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#schedule">Schedule</a></li>
     <li><a href="#breakouts">Breakouts</a></li>
     <li><a href="#conference-team">About Us</a></li>
     <li><a href="#attendees">Attendees</a></li>
@@ -37,8 +38,8 @@
 <!-- STATS -->
 <div class="stats-band">
   <div class="stats-inner">
-      <div class="stat"><strong>8</strong><span>Breakout Sessions</span></div>
-      <div class="stat"><strong>4</strong><span>Featured Speakers</span></div>
+      <div class="stat"><strong>17</strong><span>Breakout Sessions</span></div>
+      <div class="stat"><strong>12</strong><span>Featured Speakers</span></div>
 </div>
 
 <!-- ABOUT -->
@@ -100,7 +101,7 @@
 <section id="breakouts" style="padding: 4rem 0; background: #f1f5f1;">
   <div class="section" style="padding-top: 0; padding-bottom: 0;">
     <div class="section-title">Breakout Sessions</div>
-    <p class="section-sub">Our breakout sessions are intentionally designed to build confidence, deepen application, and center wisdom — guiding educators through a purposeful learning journey rather than isolated workshops.</p>
+    <p class="section-sub">Browse sessions below, then <a href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer" style="color:#2c5234;font-weight:600;">register here</a> — spaces are limited.</p>
 
     <!-- Learn / Apply / Discern strip -->
     <div class="lad-strip">
@@ -123,12 +124,22 @@
       </div>
     </div>
 
-    <!-- Category filter -->
+    <!-- Filters -->
     <div class="breakout-filter" id="breakoutFilter">
-      <button class="filter-btn active" data-cat="All">All</button>
-      <button class="filter-btn" data-cat="Learn">Learn</button>
-      <button class="filter-btn" data-cat="Apply">Apply</button>
-      <button class="filter-btn" data-cat="Discern">Discern</button>
+      <div class="filter-row">
+        <span class="filter-label">Category:</span>
+        <button class="filter-btn active" data-cat="All">All</button>
+        <button class="filter-btn" data-cat="Learn">Learn</button>
+        <button class="filter-btn" data-cat="Apply">Apply</button>
+        <button class="filter-btn" data-cat="Discern">Discern</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Session:</span>
+        <button class="filter-btn active" data-slot="All">All</button>
+        <button class="filter-btn" data-slot="1">Session 1 · 9:00 AM</button>
+        <button class="filter-btn" data-slot="2">Session 2 · 10:30 AM</button>
+        <button class="filter-btn" data-slot="3">Session 3 · 1:00 PM</button>
+      </div>
     </div>
 
     <div class="breakout-grid" id="breakoutGrid"></div>
@@ -136,6 +147,23 @@
 </section>
 
 
+
+<!-- SCHEDULE -->
+<section id="schedule" style="padding: 4rem 0; background: #ffffff;">
+  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-title" style="color:#2c5234;">Conference Schedule</div>
+    <p class="section-sub" style="color:var(--muted);">August 5, 2026 · Westminster Christian School — HS Campus. Click "View Sessions" on a breakout row to explore concurrent options.</p>
+    <div id="scheduleGrid"></div>
+    <div class="reg-cta">
+      <div class="reg-cta-content">
+        <div class="reg-cta-text">
+          <strong>Ready to attend?</strong> Browse the breakout sessions below, then complete your registration — spaces are limited and capacity fills quickly.
+        </div>
+        <a class="reg-cta-btn" href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer">Register for Your Sessions →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT US -->
 <section class="section about-us-section" id="conference-team">
@@ -217,32 +245,6 @@
   <span>Questions? Contact <a href="mailto:conference@wcsmiami.org" style="color:#2c5234;">conference@wcsmiami.org</a></span><br/>
   <span style="opacity:.4;font-size:.75rem;margin-top:.5rem;display:inline-block;"><a href="admin.html" style="color:inherit;">Admin</a></span>
 </footer>
-
-<!-- REGISTRATION MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-    <h2 id="modalTitle">Register for Session</h2>
-    <div class="modal-session-name" id="modalSessionName"></div>
-    <form id="registrationForm" novalidate>
-      <div class="form-group">
-        <label for="inputName">Full Name</label>
-        <input type="text" id="inputName" placeholder="Jane Smith" autocomplete="name" />
-        <div class="form-error" id="nameError">Please enter your full name.</div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">Email Address</label>
-        <input type="email" id="inputEmail" placeholder="jane@example.com" autocomplete="email" />
-        <div class="form-error" id="emailError">Please enter a valid email address.</div>
-      </div>
-      <div class="form-error" id="duplicateError" style="margin-bottom:.5rem;"></div>
-      <button type="submit" class="modal-submit">Confirm Registration</button>
-    </form>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
 
 <script src="app.js"></script>
 </body>
