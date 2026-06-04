@@ -50,6 +50,33 @@ const FULL_SCHEDULE = [
 
 const REGISTRATION_URL = "https://forms.office.com/r/c7MKTGSTdS";
 
+const EXPO_TABLES = [
+  {
+    org: "Pine Crest School",
+    color: "#B9975B",
+    init: "PC",
+    logo: "",
+    headline: "Pine Crest Innovation Institute",
+    desc: "Learn more about Pine Crest's Innovation Institute and how to take educators — and students — from beginner to advanced in AI. Explore their programs, resources, and pathways for deepening AI fluency at every level.",
+  },
+  {
+    org: "Microsoft",
+    color: "#4c7d5c",
+    init: "MS",
+    logo: "",
+    headline: "Microsoft in Education",
+    desc: "Discover what it means to be a Microsoft school. Learn about the tools, training, and partnership opportunities available to schools and educators through Microsoft's education programs.",
+  },
+  {
+    org: "Westminster Christian School",
+    color: "#2c5234",
+    init: "WCS",
+    logo: "https://csfla.org/assets/images/schools/logos/westminster-christian-logo.png",
+    headline: "Westminster Christian School — TBD",
+    desc: "Meet the WCS team and learn how to innovate with Christ at the center. Discover how Westminster integrates faith, excellence, and emerging technology to form the next generation of ambassadors.",
+  },
+];
+
 const BREAKOUT_SESSIONS = [
   {
     id: 101, category: "Learn", grade: "All Grade Levels",
@@ -350,9 +377,30 @@ function renderSchedule() {
   }).join('');
 }
 
+/* ── EXPO ── */
+function renderExpo() {
+  const container = document.getElementById("expoGrid");
+  if (!container) return;
+  container.innerHTML = EXPO_TABLES.map(t => {
+    const avatar = t.logo
+      ? `<img class="expo-logo" src="${t.logo}" alt="${t.org}" />`
+      : `<div class="expo-initials" style="background:${t.color}">${t.init}</div>`;
+    return `
+      <div class="expo-card">
+        <div class="expo-card-top">
+          ${avatar}
+          <div class="expo-org">${t.org}</div>
+        </div>
+        <h3 class="expo-headline">${t.headline}</h3>
+        <p class="expo-desc">${t.desc}</p>
+      </div>`;
+  }).join('');
+}
+
 /* ── INIT ── */
 renderBreakouts();
 renderSpeakers();
 renderTeam();
 renderAttendees();
 renderSchedule();
+renderExpo();
