@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /a \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\\\\conference-site\")",
+      "Bash(git rm *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git rebase *)",
+      "Bash(git init *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\conference-site\\.git",
+      "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\.git\\rebase-merge"
+    ]
+  }
+}
