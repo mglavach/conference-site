@@ -14,7 +14,7 @@
   --teal:    #3a6b44;
   --green:   #2c5234;
   --gold:    #B9975B;
-  --bg:      #f8fafc;
+  --bg:      #fdf8f0;
   --surface: #ffffff;
   --border:  #e2e8f0;
   --text:    #111827;
@@ -76,6 +76,7 @@ nav a:hover { color: #fff; text-decoration: underline; }
 .tabs-section { padding-top: 3rem; }
 .tabs-nav {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 2px solid var(--border);
   margin-bottom: 2rem;
   gap: 0;

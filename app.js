@@ -335,6 +335,7 @@ function scrollToSession(id) {
   activeBreakoutSlot = "All";
   document.querySelectorAll("#breakoutFilter .filter-btn[data-cat]").forEach(b => b.classList.toggle("active", b.dataset.cat === "All"));
   document.querySelectorAll("#breakoutFilter .filter-btn[data-slot]").forEach(b => b.classList.toggle("active", b.dataset.slot === "All"));
+  openTab("tab-breakouts");
   renderBreakouts();
   setTimeout(() => {
     const card = document.getElementById(`card-${id}`);
@@ -351,8 +352,9 @@ function filterBySlot(slot) {
   activeBreakoutSlot = String(slot);
   document.querySelectorAll("#breakoutFilter .filter-btn[data-cat]").forEach(b => b.classList.toggle("active", b.dataset.cat === "All"));
   document.querySelectorAll("#breakoutFilter .filter-btn[data-slot]").forEach(b => b.classList.toggle("active", b.dataset.slot === String(slot)));
+  openTab("tab-breakouts");
   renderBreakouts();
-  document.getElementById("breakouts").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("main-tabs").scrollIntoView({ behavior: "smooth" });
 }
 
 function renderSchedule() {
@@ -398,16 +400,28 @@ function renderExpo() {
 }
 
 /* ── TABS ── */
+function openTab(tabId) {
+  const section = document.getElementById('main-tabs');
+  if (!section) return;
+  section.querySelectorAll('.tab-btn').forEach(b => {
+    const active = b.dataset.tab === tabId;
+    b.classList.toggle('active', active);
+    b.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  section.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === tabId);
+  });
+}
+
 document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = btn.dataset.tab;
-    btn.closest('.tabs-section').querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.toggle('active', b === btn);
-      b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-    });
-    btn.closest('.tabs-section').querySelectorAll('.tab-panel').forEach(p => {
-      p.classList.toggle('active', p.id === target);
-    });
+  btn.addEventListener('click', () => openTab(btn.dataset.tab));
+});
+
+document.querySelectorAll('[data-open-tab]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    openTab(el.dataset.openTab);
+    document.getElementById('main-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 

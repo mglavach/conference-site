@@ -12,14 +12,14 @@
 <nav>
   <span class="brand">AI with Purpose 2026</span>
   <ul>
-    <li><a href="#about">The Conference</a></li>
-    <li><a href="#venue">Venue</a></li>
-    <li><a href="#speakers">Speakers</a></li>
-    <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#expo">AI Expo</a></li>
-    <li><a href="#breakouts">Breakouts</a></li>
-    <li><a href="#conference-team">About Us</a></li>
-    <li><a href="#attendees">Attendees</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-about">About Us</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-venue">Venue</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-schedule">Schedule</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-breakouts">Breakout Sessions</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-speakers">Speakers</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-expo">AI Expo</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-team">The Team</a></li>
+    <li><a href="#main-tabs" data-open-tab="tab-attendees">Attendees</a></li>
   </ul>
 </nav>
 
@@ -33,7 +33,7 @@
     <div class="chip">Westminster Christian School — HS Campus</div>
     <div class="chip">PK–12 Educators &amp; Leaders</div>
   </div>
-  <a href="#breakouts" class="btn-primary">Browse Sessions</a>
+  <a href="#main-tabs" class="btn-primary" data-open-tab="tab-breakouts">Browse Sessions</a>
 </header>
 
 <!-- STATS -->
@@ -41,19 +41,25 @@
   <div class="stats-inner">
       <div class="stat"><strong>17</strong><span>Breakout Sessions</span></div>
       <div class="stat"><strong>12</strong><span>Featured Speakers</span></div>
+  </div>
 </div>
 
-<!-- ABOUT / VENUE / THE TEAM TABS -->
-<section class="section tabs-section" id="about">
+<!-- MAIN TABS -->
+<section class="section tabs-section" id="main-tabs">
   <div class="tabs-nav" role="tablist">
-    <button class="tab-btn active" role="tab" data-tab="tab-about" aria-selected="true">About</button>
-    <button class="tab-btn" role="tab" data-tab="tab-venue" aria-selected="false">Venue</button>
-    <button class="tab-btn" role="tab" data-tab="tab-team" aria-selected="false">The Team</button>
+    <button class="tab-btn active" role="tab" data-tab="tab-about"    aria-selected="true">About Us</button>
+    <button class="tab-btn" role="tab" data-tab="tab-venue"    aria-selected="false">Venue</button>
+    <button class="tab-btn" role="tab" data-tab="tab-schedule" aria-selected="false">Schedule</button>
+    <button class="tab-btn" role="tab" data-tab="tab-breakouts" aria-selected="false">Breakout Sessions</button>
+    <button class="tab-btn" role="tab" data-tab="tab-speakers" aria-selected="false">Breakout Speakers</button>
+    <button class="tab-btn" role="tab" data-tab="tab-expo"     aria-selected="false">AI Expo</button>
+    <button class="tab-btn" role="tab" data-tab="tab-team"      aria-selected="false">The Conference Team</button>
+    <button class="tab-btn" role="tab" data-tab="tab-attendees" aria-selected="false">Attendees</button>
   </div>
 
-  <!-- About Tab -->
+  <!-- Tab 1: About Us -->
   <div class="tab-panel active" id="tab-about" role="tabpanel">
-    <div class="section-title">About the Conference</div>
+    <div class="section-title" style="color:#2c5234;">About the Conference</div>
     <p class="section-sub">Artificial Intelligence with Purpose is a forward-thinking conference designed to equip Christian educators to pursue excellence in education while remaining firmly grounded in their God-given calling as image-bearers and creators.</p>
     <div class="about-grid">
       <div class="about-card">
@@ -73,17 +79,31 @@
         <p>We will focus on purposeful innovation that forms students as thoughtful learners, ethical leaders, and ambassadors for Christ prepared to engage tomorrow's world with confidence, compassion, and excellence.</p>
       </div>
     </div>
-    <!-- FEATURED SPEAKERS -->
-    <div id="speakers" class="venue-subsection">
-      <div class="section-title" style="font-size:1.4rem;">Featured Speakers</div>
-      <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Christian educators and AI practitioners leading our sessions.</p>
-      <div class="speakers-grid" id="speakersGrid"></div>
+
+    <div class="about-us-grid" style="margin-top:3rem;">
+      <div class="about-us-card about-us-school">
+        <div class="about-us-logo">
+          <img src="https://csfla.org/assets/images/schools/logos/westminster-christian-logo.png" alt="Westminster Christian School" />
+        </div>
+        <div class="about-us-text">
+          <h3>Westminster Christian School</h3>
+          <p>Westminster Christian School is a PK–12 independent Christian school located in Palmetto Bay, Florida. Rooted in a Christ-centered mission and committed to academic excellence, WCS prepares students to be ambassadors for Christ — thinking critically, serving compassionately, and engaging the world with confidence and conviction.</p>
+          <p>As a community of educators who take seriously our call to be faithful stewards of every resource and opportunity, Westminster is committed to engaging emerging technologies — like artificial intelligence — thoughtfully, biblically, and purposefully.</p>
+          <a class="about-us-link" href="https://www.wcsmiami.org" target="_blank" rel="noopener noreferrer">Visit wcsmiami.org →</a>
+        </div>
+      </div>
+      <div class="about-us-card about-us-mission">
+        <h3>Why This Conference</h3>
+        <p>AI with Purpose grew out of a simple conviction: Christian educators deserve a space to wrestle honestly with emerging technology — not from fear, but from faith. We believe that those who are called to form the next generation cannot afford to ignore the tools shaping the world our students will inhabit.</p>
+        <p>This conference brings together Christian educators, AI specialists, and school leaders to ask harder questions, share practical strategies, and leave better equipped to steward technology in a way that honors God and serves students.</p>
+      </div>
     </div>
+
   </div>
 
-  <!-- Venue Tab -->
+  <!-- Tab 2: Venue -->
   <div class="tab-panel" id="tab-venue" role="tabpanel">
-    <div class="section-title" style="font-size:1.4rem;">Venue</div>
+    <div class="section-title" style="color:#2c5234;">Venue</div>
     <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Everything you need to know about getting there and getting around.</p>
     <div class="venue-block">
       <div class="venue-info">
@@ -100,21 +120,25 @@
     </div>
   </div>
 
-  <!-- The Team Tab -->
-  <div class="tab-panel" id="tab-team" role="tabpanel">
-    <div class="section-title" style="font-size:1.4rem;">The Team</div>
-    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">The Westminster Christian School educators and leaders behind <em>Artificial Intelligence with Purpose</em>.</p>
-    <div class="speakers-grid" id="teamGrid"></div>
+  <!-- Tab 3: Schedule -->
+  <div class="tab-panel" id="tab-schedule" role="tabpanel">
+    <div class="section-title" style="color:#2c5234;">Conference Schedule</div>
+    <p class="section-sub" style="color:var(--muted);">August 5, 2026 · Westminster Christian School — HS Campus. Click "View Sessions" on a breakout row to explore concurrent options.</p>
+    <div id="scheduleGrid"></div>
+    <div class="reg-cta">
+      <div class="reg-cta-content">
+        <div class="reg-cta-text">
+          <strong>Ready to attend?</strong> Browse the breakout sessions below, then complete your registration — spaces are limited and capacity fills quickly.
+        </div>
+        <a class="reg-cta-btn" href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer">Register for Your Sessions →</a>
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- BREAKOUT SESSIONS -->
-<section id="breakouts" style="padding: 4rem 0; background: #f1f5f1;">
-  <div class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="section-title">Breakout Sessions</div>
+  <!-- Tab 4: Breakout Sessions -->
+  <div class="tab-panel" id="tab-breakouts" role="tabpanel">
+    <div class="section-title" style="color:#2c5234;">Breakout Sessions</div>
     <p class="section-sub">Browse sessions below, then <a href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer" style="color:#2c5234;font-weight:600;">register here</a> — spaces are limited.</p>
-
-    <!-- Learn / Apply / Discern strip -->
     <div class="lad-strip">
       <div class="lad-cell lad-learn">
         <div class="lad-label">Learn</div>
@@ -134,8 +158,6 @@
         <p>Deep dive into specialized, advanced, or extension topics for those ready to explore further.</p>
       </div>
     </div>
-
-    <!-- Filters -->
     <div class="breakout-filter" id="breakoutFilter">
       <div class="filter-row">
         <span class="filter-label">Category:</span>
@@ -152,64 +174,29 @@
         <button class="filter-btn" data-slot="3">Session 3 · 1:00 PM</button>
       </div>
     </div>
-
     <div class="breakout-grid" id="breakoutGrid"></div>
   </div>
-</section>
 
-
-
-<!-- SCHEDULE -->
-<section id="schedule" style="padding: 4rem 0; background: #ffffff;">
-  <div class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="section-title" style="color:#2c5234;">Conference Schedule</div>
-    <p class="section-sub" style="color:var(--muted);">August 5, 2026 · Westminster Christian School — HS Campus. Click "View Sessions" on a breakout row to explore concurrent options.</p>
-    <div id="scheduleGrid"></div>
-    <div class="reg-cta">
-      <div class="reg-cta-content">
-        <div class="reg-cta-text">
-          <strong>Ready to attend?</strong> Browse the breakout sessions below, then complete your registration — spaces are limited and capacity fills quickly.
-        </div>
-        <a class="reg-cta-btn" href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer">Register for Your Sessions →</a>
-      </div>
-    </div>
+  <!-- Tab 5: Breakout Speakers -->
+  <div class="tab-panel" id="tab-speakers" role="tabpanel">
+    <div class="section-title" style="color:#2c5234;">Featured Speakers</div>
+    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">Christian educators and AI practitioners leading our sessions.</p>
+    <div class="speakers-grid" id="speakersGrid"></div>
   </div>
-</section>
 
-<!-- AI EXPO -->
-<section id="expo" style="padding: 4rem 0; background: #f1f5f1;">
-  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+  <!-- Tab 6: AI Expo -->
+  <div class="tab-panel" id="tab-expo" role="tabpanel">
     <div class="section-title" style="color:#2c5234;">AI Expo</div>
     <p class="section-sub" style="color:var(--muted);">11:25 AM – 1:00 PM · Breezeway / SAC &nbsp;·&nbsp; Lunch is served — stop by the tables, connect with partners, and explore what's possible.</p>
     <div class="expo-grid" id="expoGrid"></div>
   </div>
-</section>
 
-<!-- ABOUT US -->
-<section class="section about-us-section" id="conference-team">
-  <div class="section-title">About Us</div>
-
-  <div class="about-us-grid">
-
-    <div class="about-us-card about-us-school">
-      <div class="about-us-logo">
-        <img src="https://csfla.org/assets/images/schools/logos/westminster-christian-logo.png" alt="Westminster Christian School" />
-      </div>
-      <div class="about-us-text">
-        <h3>Westminster Christian School</h3>
-        <p>Westminster Christian School is a PK–12 independent Christian school located in Palmetto Bay, Florida. Rooted in a Christ-centered mission and committed to academic excellence, WCS prepares students to be ambassadors for Christ — thinking critically, serving compassionately, and engaging the world with confidence and conviction.</p>
-        <p>As a community of educators who take seriously our call to be faithful stewards of every resource and opportunity, Westminster is committed to engaging emerging technologies — like artificial intelligence — thoughtfully, biblically, and purposefully.</p>
-        <a class="about-us-link" href="https://www.wcsmiami.org" target="_blank" rel="noopener noreferrer">Visit wcsmiami.org →</a>
-      </div>
-    </div>
-
-    <div class="about-us-card about-us-mission">
-      <h3>Why This Conference</h3>
-      <p>AI with Purpose grew out of a simple conviction: Christian educators deserve a space to wrestle honestly with emerging technology — not from fear, but from faith. We believe that those who are called to form the next generation cannot afford to ignore the tools shaping the world our students will inhabit.</p>
-      <p>This conference brings together Christian educators, AI specialists, and school leaders to ask harder questions, share practical strategies, and leave better equipped to steward technology in a way that honors God and serves students.</p>
-    </div>
-
-    <div class="about-us-card about-us-contact">
+  <!-- Tab 7: The Conference Team -->
+  <div class="tab-panel" id="tab-team" role="tabpanel">
+    <div class="section-title" style="color:#2c5234;">The Conference Team</div>
+    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">The Westminster Christian School educators and leaders behind <em>Artificial Intelligence with Purpose</em>.</p>
+    <div class="speakers-grid" id="teamGrid"></div>
+    <div class="about-us-card about-us-contact" style="margin-top:2.5rem; max-width:480px;">
       <h3>Get in Touch</h3>
       <p>Have questions about the conference, sessions, or registration? We'd love to hear from you.</p>
       <ul class="about-us-contact-list">
@@ -219,12 +206,11 @@
         <li><strong>Conference Date:</strong> August 5, 2026</li>
       </ul>
     </div>
-
   </div>
 
-  <!-- ATTENDEES -->
-  <div id="attendees" class="venue-subsection">
-    <div class="section-title" style="font-size:1.4rem; color:#2c5234;">Attendees</div>
+  <!-- Tab 8: Attendees -->
+  <div class="tab-panel" id="tab-attendees" role="tabpanel">
+    <div class="section-title" style="color:#2c5234;">Attendees</div>
     <p class="section-sub" style="color:var(--muted); margin-bottom:1rem;">The body of Christ is stronger when we build together. <em>AI with Purpose</em> brings educators from across Christian schools to share, grow, and sharpen one another.</p>
     <div class="attendees-grid">
       <div class="attendee-type-card">
