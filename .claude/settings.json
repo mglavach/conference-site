@@ -6,11 +6,18 @@
       "Bash(git pull *)",
       "Bash(git checkout *)",
       "Bash(git rebase *)",
-      "Bash(git init *)"
+      "Bash(git init *)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\\\\embed-sessions.html\" -Destination \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\\\\embed-sessions.html\")",
+      "PowerShell(git config --list --show-origin 2>&1)",
+      "PowerShell($env:HOME; $env:USERPROFILE; [System.Environment]::GetEnvironmentVariable\\(\"HOME\"\\))",
+      "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git init; git checkout -b main)",
+      "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git add embed-sessions.html; git commit -m \"Add embed-sessions.html for Breakout Sessions and Conference Schedule sections\"; git remote add origin https://github.com/mglavach/conference-sessions.git; git push -u origin main)",
+      "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git mv embed-sessions.html index.html; git commit -m \"Rename embed-sessions.html to index.html for GitHub Pages\"; git push)"
     ],
     "additionalDirectories": [
       "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\conference-site\\.git",
-      "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\.git\\rebase-merge"
+      "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\.git\\rebase-merge",
+      "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-sessions"
     ]
   }
 }

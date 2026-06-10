@@ -397,6 +397,20 @@ function renderExpo() {
   }).join('');
 }
 
+/* ── TABS ── */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    btn.closest('.tabs-section').querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+    });
+    btn.closest('.tabs-section').querySelectorAll('.tab-panel').forEach(p => {
+      p.classList.toggle('active', p.id === target);
+    });
+  });
+});
+
 /* ── INIT ── */
 renderBreakouts();
 renderSpeakers();

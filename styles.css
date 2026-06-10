@@ -72,6 +72,36 @@ nav a:hover { color: #fff; text-decoration: underline; }
 #about .section-sub { color: #2c5234; }
 #speakers .section-sub { color: #fff; }
 
+/* ── TABS ── */
+.tabs-section { padding-top: 3rem; }
+.tabs-nav {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2rem;
+  gap: 0;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  padding: .7rem 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+  font-family: inherit;
+  letter-spacing: .01em;
+}
+.tab-btn:hover { color: var(--green); }
+.tab-btn.active {
+  color: var(--green);
+  border-bottom-color: var(--gold);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
 /* ── STATS ── */
 .stats-band { background: var(--blue); color: #fff; }
 .stats-inner { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 2.5rem 1.5rem; }

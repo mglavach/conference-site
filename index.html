@@ -43,37 +43,48 @@
       <div class="stat"><strong>12</strong><span>Featured Speakers</span></div>
 </div>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div>
+<!-- ABOUT / VENUE / THE TEAM TABS -->
+<section class="section tabs-section" id="about">
+  <div class="tabs-nav" role="tablist">
+    <button class="tab-btn active" role="tab" data-tab="tab-about" aria-selected="true">About</button>
+    <button class="tab-btn" role="tab" data-tab="tab-venue" aria-selected="false">Venue</button>
+    <button class="tab-btn" role="tab" data-tab="tab-team" aria-selected="false">The Team</button>
+  </div>
+
+  <!-- About Tab -->
+  <div class="tab-panel active" id="tab-about" role="tabpanel">
     <div class="section-title">About the Conference</div>
     <p class="section-sub">Artificial Intelligence with Purpose is a forward-thinking conference designed to equip Christian educators to pursue excellence in education while remaining firmly grounded in their God-given calling as image-bearers and creators.</p>
-  </div>
-  <div class="about-grid">
-    <div class="about-card">
-      <h3>Faith-Centered Foundation</h3>
-      <p>As those created by God to create, educators are uniquely positioned to steward emerging technologies like AI with wisdom, discernment, and faith without compromising truth or our Christ-centered mission.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Faith-Centered Foundation</h3>
+        <p>As those created by God to create, educators are uniquely positioned to steward emerging technologies like AI with wisdom, discernment, and faith without compromising truth or our Christ-centered mission.</p>
+      </div>
+      <div class="about-card">
+        <h3>Purposeful AI Integration</h3>
+        <p>Explore how artificial intelligence can be used responsibly and creatively to elevate teaching and learning across PK–12 classrooms. Leave with tools you can use Monday morning.</p>
+      </div>
+      <div class="about-card">
+        <h3>Hands-On Workshops</h3>
+        <p>Interactive sessions led by practitioners who have implemented AI thoughtfully in Christian school settings as well as AI Education specialists from Microsoft and Pine Crest schools. Practical strategies grounded in pedagogy and mission will be provided.</p>
+      </div>
+      <div class="about-card">
+        <h3>Forming Ambassadors</h3>
+        <p>We will focus on purposeful innovation that forms students as thoughtful learners, ethical leaders, and ambassadors for Christ prepared to engage tomorrow's world with confidence, compassion, and excellence.</p>
+      </div>
     </div>
-    <div class="about-card">
-      <h3>Purposeful AI Integration</h3>
-      <p>Explore how artificial intelligence can be used responsibly and creatively to elevate teaching and learning across PK–12 classrooms. Leave with tools you can use Monday morning.</p>
-    </div>
-    <div class="about-card">
-      <h3>Hands-On Workshops</h3>
-      <p>Interactive sessions led by practitioners who have implemented AI thoughtfully in Christian school settings as well as AI Education specialists from Microsoft and Pine Crest schools. Practical strategies grounded in pedagogy and mission will be provided.</p>
-    </div>
-    <div class="about-card">
-      <h3>Forming Ambassadors</h3>
-      <p>We will focus on purposeful innovation that forms students as thoughtful learners, ethical leaders, and ambassadors for Christ prepared to engage tomorrow's world with confidence, compassion, and excellence.</p>
+    <!-- FEATURED SPEAKERS -->
+    <div id="speakers" class="venue-subsection">
+      <div class="section-title" style="font-size:1.4rem;">Featured Speakers</div>
+      <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Christian educators and AI practitioners leading our sessions.</p>
+      <div class="speakers-grid" id="speakersGrid"></div>
     </div>
   </div>
 
-  <!-- VENUE — nested inside About -->
-  <div id="venue" class="venue-subsection">
-    <div class="venue-subsection-header">
-      <div class="section-title" style="font-size:1.4rem;">Venue</div>
-      <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Everything you need to know about getting there and getting around.</p>
-    </div>
+  <!-- Venue Tab -->
+  <div class="tab-panel" id="tab-venue" role="tabpanel">
+    <div class="section-title" style="font-size:1.4rem;">Venue</div>
+    <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Everything you need to know about getting there and getting around.</p>
     <div class="venue-block">
       <div class="venue-info">
         <h3>Westminster Christian School — HS Campus</h3>
@@ -84,17 +95,16 @@
         <p style="margin-top: 1rem; font-size: .85rem; color: var(--muted);">Room assignments are included in your confirmation email after you register for individual sessions.</p>
       </div>
       <div class="venue-map">
-        <!-- Save the campus map image as campus-map.jpg in this project folder -->
         <img src="campus-map.jpg.png" alt="Westminster Christian School Campus Map" class="campus-map-img" />
       </div>
     </div>
   </div>
 
-  <!-- FEATURED SPEAKERS — nested inside About -->
-  <div id="speakers" class="venue-subsection">
-    <div class="section-title" style="font-size:1.4rem;">Featured Speakers</div>
-    <p class="section-sub" style="color:#2c5234; margin-bottom:1.5rem;">Christian educators and AI practitioners leading our sessions.</p>
-    <div class="speakers-grid" id="speakersGrid"></div>
+  <!-- The Team Tab -->
+  <div class="tab-panel" id="tab-team" role="tabpanel">
+    <div class="section-title" style="font-size:1.4rem;">The Team</div>
+    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">The Westminster Christian School educators and leaders behind <em>Artificial Intelligence with Purpose</em>.</p>
+    <div class="speakers-grid" id="teamGrid"></div>
   </div>
 </section>
 
@@ -210,13 +220,6 @@
       </ul>
     </div>
 
-  </div>
-
-  <!-- THE TEAM -->
-  <div class="venue-subsection">
-    <div class="section-title" style="font-size:1.4rem; color:#2c5234;">The Team</div>
-    <p class="section-sub" style="color:var(--muted); margin-bottom:1.5rem;">The Westminster Christian School educators and leaders behind <em>Artificial Intelligence with Purpose</em>.</p>
-    <div class="speakers-grid" id="teamGrid"></div>
   </div>
 
   <!-- ATTENDEES -->

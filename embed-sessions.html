@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sessions — AI with Purpose 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #2c5234;
+      --blue-dk: #1e3a24;
+      --teal:    #3a6b44;
+      --green:   #2c5234;
+      --gold:    #B9975B;
+      --bg:      #f8fafc;
+      --surface: #ffffff;
+      --border:  #e2e8f0;
+      --text:    #111827;
+      --muted:   #475569;
+      --radius:  10px;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px;
+    }
+
+    .section { padding: 4rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: .4rem; }
+    .section-sub { color: var(--muted); margin-bottom: 2.5rem; }
+
+    /* ── BREAKOUT SESSIONS ── */
+    #breakouts { padding: 4rem 0; background: #f1f5f1; }
+    #breakouts .section-title { color: var(--green); }
+
+    .lad-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 2.5rem;
+    }
+    .lad-cell {
+      padding: 1.4rem 1.6rem; background: var(--surface); position: relative;
+    }
+    .lad-cell:not(:last-child) { border-right: 1.5px solid var(--border); }
+    .lad-label {
+      font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+    .lad-learn  .lad-label { color: #2c5234; }
+    .lad-apply  .lad-label { color: #B99758; }
+    .lad-discern .lad-label { color: #2c5234; }
+    .lad-cell h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+    .lad-cell p  { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+    .lad-arrow {
+      position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+      background: var(--border); color: var(--muted); border-radius: 50%;
+      width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; z-index: 1;
+    }
+
+    .breakout-filter { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
+    .filter-row { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .filter-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); white-space: nowrap; margin-right: .2rem; }
+    .filter-btn {
+      padding: .35rem .9rem; border-radius: 20px; border: 1.5px solid var(--border);
+      background: var(--surface); font-size: .85rem; cursor: pointer; transition: all .15s;
+      color: var(--text);
+    }
+    #breakouts .filter-btn[data-cat="All"],
+    #breakouts .filter-btn[data-cat="All"].active,
+    #breakouts .filter-btn[data-cat="All"]:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    #breakouts .filter-btn[data-cat="Learn"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+    #breakouts .filter-btn[data-cat="Apply"] { color: #B99758; border-color: #B99758; background: rgba(185,151,88,.08); }
+    #breakouts .filter-btn[data-cat="Discern"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+    #breakouts .filter-btn[data-cat="Learn"].active,
+    #breakouts .filter-btn[data-cat="Learn"]:hover { background: #2c5234; color: #fff; border-color: #2c5234; }
+    #breakouts .filter-btn[data-cat="Apply"].active,
+    #breakouts .filter-btn[data-cat="Apply"]:hover { background: #B99758; color: #fff; border-color: #B99758; }
+    #breakouts .filter-btn[data-cat="Discern"].active,
+    #breakouts .filter-btn[data-cat="Discern"]:hover { background: #2c5234; color: #fff; border-color: #2c5234; }
+    #breakouts .filter-btn[data-slot] { color: var(--muted); border-color: var(--border); background: var(--surface); }
+    #breakouts .filter-btn[data-slot].active,
+    #breakouts .filter-btn[data-slot]:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    .breakout-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.4rem; }
+
+    .cat-pill {
+      font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+      padding: .2rem .65rem; border-radius: 12px; display: inline-block;
+    }
+    .cat-Learn   { background: rgba(44,82,52,.12);   color: #2c5234; border: 1px solid #2c5234; }
+    .cat-Apply   { background: rgba(185,151,88,.12); color: #B99758; border: 1px solid #B99758; }
+    .cat-Discern { background: rgba(44,82,52,.12);   color: #2c5234; border: 1px solid #2c5234; }
+
+    .grade-pill {
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      padding: .2rem .65rem; border-radius: 12px; display: inline-block;
+      color: #2c5234; background: transparent; border: 1px solid #2c5234;
+    }
+    .slot-pill {
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      padding: .2rem .65rem; border-radius: 12px; display: inline-block;
+      color: #475569; background: rgba(71,85,105,.09); border: 1px solid rgba(71,85,105,.3);
+    }
+    .cap-pill {
+      font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      padding: .18rem .55rem; border-radius: 12px; display: inline-block;
+      color: var(--muted); background: rgba(71,85,105,.08); border: 1px solid rgba(71,85,105,.25);
+    }
+    .session-note {
+      font-size: .8rem; color: #B99758; background: rgba(185,151,88,.1);
+      border-left: 3px solid #B99758; padding: .4rem .75rem;
+      border-radius: 0 6px 6px 0; font-weight: 600; line-height: 1.45;
+    }
+
+    .breakout-card {
+      background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .65rem;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .breakout-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.1); border-color: var(--blue); }
+    .breakout-card h3 { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-top: .55rem; color: #2c5234; }
+    .breakout-card .desc { font-size: .84rem; color: #2c5234; line-height: 1.55; flex: 1; }
+    .breakout-card-top { display: flex; flex-direction: column; gap: .75rem; }
+    .breakout-tags { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .speaker-top { display: flex; align-items: center; gap: .75rem; padding: .6rem 0 .1rem; }
+    .bs-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; font-weight: 700; color: #fff;
+    }
+    .speaker-top .bs-avatar { width: 42px; height: 42px; font-size: .85rem; }
+    .bs-name { font-size: .85rem; font-weight: 700; color: #2c5234; }
+    .bs-role { font-size: .76rem; color: #2c5234; }
+    .bs-linkedin { font-size: .74rem; color: #2c5234; margin-top: .1rem; }
+    .breakout-speaker {
+      display: flex; align-items: center; gap: .75rem; padding-top: .5rem;
+      border-top: 1px solid #2c5234; text-decoration: none; color: inherit;
+    }
+    .breakout-speaker div { display: flex; flex-direction: column; gap: .2rem; }
+    .breakout-speaker .bs-name { font-size: .88rem; }
+    .breakout-speaker:hover .bs-name { text-decoration: underline; }
+
+    /* ── SCHEDULE ── */
+    #schedule { padding: 4rem 0; background: #ffffff; }
+    #schedule .section-title { color: #2c5234; }
+
+    .sched-item {
+      display: grid; grid-template-columns: 9rem 1fr auto;
+      gap: 1rem 1.5rem; align-items: start;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .sched-item:last-child { border-bottom: none; }
+    .sched-item-time { font-size: .8rem; font-weight: 700; color: var(--muted); white-space: nowrap; padding-top: .15rem; }
+    .sched-item-title  { font-size: .95rem; font-weight: 700; color: #2c5234; margin-bottom: .2rem; }
+    .sched-item-speaker { font-size: .82rem; color: var(--muted); margin-bottom: .2rem; font-style: italic; }
+    .sched-item-desc   { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+    .sched-item-right  { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: .5rem; }
+    .sched-item-location { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+    .sched-type-keynote .sched-item-title { color: var(--gold); }
+    .sched-type-breakout { background: rgba(44,82,52,.03); border-radius: var(--radius); padding: 1rem; margin: .25rem 0; }
+    .sched-type-breakout .sched-item-title { color: #2c5234; }
+    .sched-view-btn {
+      font-size: .75rem; font-weight: 700; padding: .3rem .85rem; border-radius: 6px;
+      border: 1.5px solid var(--blue); background: transparent; color: var(--blue);
+      cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .sched-view-btn:hover { background: var(--blue); color: #fff; }
+
+    .reg-cta {
+      margin-top: 2rem; background: linear-gradient(135deg, var(--blue-dk) 0%, var(--teal) 100%);
+      border-radius: var(--radius); padding: 1.5rem 2rem;
+    }
+    .reg-cta-content { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .reg-cta-text { color: rgba(255,255,255,.92); font-size: .95rem; line-height: 1.55; flex: 1; }
+    .reg-cta-text strong { color: #fff; }
+    .reg-cta-btn {
+      display: inline-block; background: #fff; color: var(--blue-dk);
+      font-weight: 700; padding: .7rem 1.6rem; border-radius: 8px;
+      text-decoration: none; font-size: .95rem; white-space: nowrap;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .reg-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+
+    @media (max-width: 640px) {
+      .lad-strip { grid-template-columns: 1fr; }
+      .lad-cell:not(:last-child) { border-right: none; border-bottom: 1.5px solid var(--border); }
+      .lad-arrow { display: none; }
+      .sched-item { grid-template-columns: 1fr; gap: .4rem; }
+      .sched-item-right { align-items: flex-start; text-align: left; }
+      .reg-cta-content { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BREAKOUT SESSIONS -->
+<section id="breakouts">
+  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-title">Breakout Sessions</div>
+    <p class="section-sub">Browse sessions below, then <a href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer" style="color:#2c5234;font-weight:600;">register here</a> — spaces are limited.</p>
+
+    <div class="lad-strip">
+      <div class="lad-cell lad-learn">
+        <div class="lad-label">Learn</div>
+        <h3>Foundations &amp; Confidence</h3>
+        <p>Build confidence with foundational AI concepts and strategies that every educator can apply immediately.</p>
+        <div class="lad-arrow">›</div>
+      </div>
+      <div class="lad-cell lad-apply">
+        <div class="lad-label">Apply</div>
+        <h3>Application in Context</h3>
+        <p>Apply AI tools purposefully within your classroom, curriculum, and school community in meaningful ways.</p>
+        <div class="lad-arrow">›</div>
+      </div>
+      <div class="lad-cell lad-discern">
+        <div class="lad-label">Discern</div>
+        <h3>Other Ideas / Extensions</h3>
+        <p>Deep dive into specialized, advanced, or extension topics for those ready to explore further.</p>
+      </div>
+    </div>
+
+    <div class="breakout-filter" id="breakoutFilter">
+      <div class="filter-row">
+        <span class="filter-label">Category:</span>
+        <button class="filter-btn active" data-cat="All">All</button>
+        <button class="filter-btn" data-cat="Learn">Learn</button>
+        <button class="filter-btn" data-cat="Apply">Apply</button>
+        <button class="filter-btn" data-cat="Discern">Discern</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Session:</span>
+        <button class="filter-btn active" data-slot="All">All</button>
+        <button class="filter-btn" data-slot="1">Session 1 · 8:45 AM</button>
+        <button class="filter-btn" data-slot="2">Session 2 · 9:40 AM</button>
+        <button class="filter-btn" data-slot="3">Session 3 · 10:35 AM</button>
+      </div>
+    </div>
+
+    <div class="breakout-grid" id="breakoutGrid"></div>
+  </div>
+</section>
+
+<!-- CONFERENCE SCHEDULE -->
+<section id="schedule">
+  <div class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section-title">Conference Schedule</div>
+    <p class="section-sub" style="color:var(--muted);">August 5, 2026 · Westminster Christian School — HS Campus. Click "View Sessions" on a breakout row to explore concurrent options.</p>
+    <div id="scheduleGrid"></div>
+    <div class="reg-cta">
+      <div class="reg-cta-content">
+        <div class="reg-cta-text">
+          <strong>Ready to attend?</strong> Browse the breakout sessions above, then complete your registration — spaces are limited and capacity fills quickly.
+        </div>
+        <a class="reg-cta-btn" href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer">Register for Your Sessions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const REGISTRATION_URL = "https://forms.office.com/r/c7MKTGSTdS";
+
+const FULL_SCHEDULE = [
+  { time: "7:30–8:00 AM",     event: "Breakfast & Check-In",      desc: "Participants arrive, enjoy breakfast, connect with colleagues, and pick up conference materials.",                     location: "Breezeway / SAC",         type: "logistics" },
+  { time: "8:00–8:05 AM",     event: "Welcome & Opening Remarks", desc: "Opening greeting, conference overview, and setting the tone and purpose for the day.",                               location: "Lighthouse",              type: "plenary",  speaker: "TBD" },
+  { time: "8:05–8:15 AM",     event: "Worship",                   desc: "A time of worship to center hearts and minds, reflecting our Christ-centered mission.",                               location: "Lighthouse",              type: "plenary",  speaker: "Katie Moon" },
+  { time: "8:15–8:30 AM",     event: "Keynote Address",           desc: "Vision-setting keynote focused on AI with purpose, wisdom, and excellence in Christian education.",                   location: "Lighthouse",              type: "keynote",  speaker: "Angie Spivak Lopez" },
+  { time: "8:45–9:30 AM",     event: "Breakout Session 1",        desc: "Choice-based sessions offering practical strategies, foundational knowledge, or classroom applications of AI.",       location: "Assigned Breakout Rooms", type: "breakout", slot: 1 },
+  { time: "9:40–10:25 AM",    event: "Breakout Session 2",        desc: "Continued learning through focused sessions aligned to different roles, grade levels, or strands.",                  location: "Assigned Breakout Rooms", type: "breakout", slot: 2 },
+  { time: "10:35–11:20 AM",   event: "Breakout Session 3",        desc: "Final round of breakout sessions emphasizing creative, ethical, and Christ-centered use of AI.",                     location: "Assigned Breakout Rooms", type: "breakout", slot: 3 },
+  { time: "11:25 AM–1:00 PM", event: "Lunch & AI Expo",           desc: "Lunch, networking, and time to explore resources, information tables, and conference handouts.",                     location: "Breezeway / SAC",         type: "logistics" },
+];
+
+const BREAKOUT_SESSIONS = [
+  { id: 101, category: "Learn", grade: "All Grade Levels",          slot: 1, room: 2, capacity: 50,  title: "Cultivating Critical AI Literacy in the Classroom", desc: "This hands-on session will equip educators with practical strategies for teaching students how to become analytical users of generative AI across various subject areas. Attendees will explore essential AI Literacy skills, including prompt engineering and critical analysis, to help students move from passive consumption to active collaboration. Key concepts covered include algorithmic bias analysis, data synthesis, and the ethical use of AI. Participants will leave with lesson ideas designed to empower students to leverage AI as a sophisticated research and thinking partner, developing crucial critical thinking and discernment skills for the new era of education.", speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" } },
+  { id: 102, category: "Learn", grade: "PreK – 2",                  slot: 2, room: 3, capacity: 50,  title: "Conceptual Introduction to AI for our Youngest Learners", desc: "A gentle, age-appropriate exploration of AI concepts designed for PreK–2 classrooms. Educators will leave with ways to introduce foundational AI ideas through stories, play, and early literacy experiences.", speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" } },
+  { id: 103, category: "Apply", grade: "All Grade Levels",          slot: 3, room: 3, capacity: 50,  title: "Using AI in Math Classrooms (Snorkl and FlintK12)", desc: "Practical strategies for using Snorkl across all grade levels and FlintK12 for grades 4 and up. Learn how to leverage AI tools to support math fluency, student agency, and meaningful computation practice.", speaker: { name: "Jordanna Court", role: "AI Education Specialist", org: "Pine Crest School", init: "JC", color: "#B9975B", linkedin: "https://www.linkedin.com/in/jordannacourt/" } },
+  { id: 104, category: "Apply", grade: "All Grade Levels",          slot: 1, room: 3, capacity: 50,  title: "Build Your Own AI Classroom Assistant", desc: "Design your own classroom assistant using AI tools, templates, and workflows that make planning, differentiation, and student support more manageable across subjects.", speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "Pine Crest School", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" } },
+  { id: 105, category: "Learn", grade: "Middle and Upper School",   slot: 2, room: 4, capacity: 50,  title: "Building Proficiency in Coding through Experimentation with Art and Music", desc: "Explore how coding proficiency grows when students design with art and music. This session highlights creative, project-based learning pathways for middle and upper school learners.", speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" } },
+  { id: 106, category: "Apply", grade: "Middle and Upper School",   slot: 3, room: 4, capacity: 50,  title: "Flint K12", desc: "An applied walkthrough of Flint K12 that demonstrates how AI can support student inquiry, feedback cycles, and personalized learning in middle and upper school classrooms.", speaker: { name: "Kelly Schuster-Paredes", role: "AI Education Specialist", org: "", init: "KS", color: "#b34740", linkedin: "https://www.linkedin.com/in/kelly-schuster-paredes-4b887264/" } },
+  { id: 107, category: "Apply", grade: "All Grade Levels",          slot: 2, room: 5, capacity: 50,  title: "Differentiating Instruction with AI", desc: "Discover approaches to use AI for personalized learning pathways, flexible scaffolding, and meaningful differentiation that honors each learner's strengths and needs.", speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "Pine Crest School", init: "JM", color: "#5b72b0", linkedin: "https://www.linkedin.com/in/jessiemetzger/" } },
+  { id: 108, category: "Discern", grade: "Administrator Session",   slot: 3, room: 5, capacity: 50,  title: "A Continuous Framework for Sustainable AI Growth", desc: "A leadership-focused session for administrators and instructional leaders exploring long-term frameworks for embedding AI thoughtfully and sustainably across school culture and curriculum.", speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "Pine Crest School", init: "JM", color: "#5b72b0", linkedin: "https://www.linkedin.com/in/jessiemetzger/" } },
+  { id: 109, category: "Apply", grade: "High School",               slot: 2, room: 6, capacity: 25,  title: "AI in the High School Science Classroom", desc: "Explore practical strategies for integrating AI into high school science — from data analysis and lab reporting to student inquiry and research assistance. Leave with concrete ideas ready for this fall.", speaker: { name: "Lisa Garrido", role: "Biology Teacher", org: "Westminster Christian School", init: "LG", color: "#2c5234", linkedin: "https://www.linkedin.com/in/lisa-garrido-bb5b1036/" } },
+  { id: 110, category: "Apply", grade: "Middle School",             slot: 2, room: 7, capacity: 25,  title: "AI in the Middle School Language Arts Classroom", desc: "Discover how AI can support writing instruction, reading comprehension, and student voice in the middle school LA classroom. This session offers concrete examples and classroom-tested strategies.", speaker: { name: "Loralyn Pybas", role: "Middle School Language Arts Teacher", org: "Westminster Christian School", init: "LP", color: "#7c5c3c", linkedin: "" } },
+  { id: 111, category: "Apply", grade: "Elementary",                slot: 3, room: 6, capacity: 25,  title: "AI in the Elementary Language Arts Classroom", desc: "A collaborative session exploring how AI tools can enrich early literacy, storytelling, and language development in elementary classrooms — with practical take-aways for the year ahead.", speaker: { name: "Sarah Cline", role: "Elementary Teacher", org: "Westminster Christian School", init: "SC", color: "#5b72b0", linkedin: "" }, speaker2: { name: "Michelle Brito", role: "Elementary Teacher", org: "Westminster Christian School", init: "MB", color: "#b34740", linkedin: "" } },
+  { id: 112, category: "Discern", grade: "All Grade Levels",        slot: 3, room: 7, capacity: 25,  title: "Ethics in AI: A Christian Educator's Framework", desc: "How do we equip students to navigate the moral complexities of artificial intelligence through a biblical lens? This session provides a framework for teaching AI ethics grounded in Christian truth and character formation.", speaker: { name: "Maggie Izquierdo", role: "Educator", org: "Westminster Christian School", init: "MI", color: "#3d9970", linkedin: "" } },
+  { id: 113, category: "Learn", grade: "Westminster Faculty & Staff", slot: 1, room: 1, capacity: 300, note: "Required for Westminster faculty and staff. Open to any educator interested in learning more about what it means to be a Microsoft Showcase School.", title: "Microsoft Showcase School Kickoff: Ready for 2026–2027", desc: "An essential session for Westminster faculty and staff as we launch another year as a Microsoft Showcase School. Learn what the designation means, what's new for 2026–2027, and how to make the most of our continued Microsoft partnership.", speaker: { name: "Geri Gillespy", role: "Senior Executive", org: "Microsoft Elevate", init: "GG", color: "#4c7d5c", linkedin: "https://www.linkedin.com/in/gerigillespy/" }, speaker2: { name: "Victoria Rose Thompson", role: "Education Strategist", org: "CDW", init: "VT", color: "#3d9970", linkedin: "https://www.linkedin.com/in/victoriarosethompson/" } },
+  { id: 114, category: "Apply", grade: "All Grade Levels",          slot: 2, room: 2, capacity: 50,  title: "AI in Education: Strategies & Solutions with CDW", desc: "Victoria Rose Thompson from CDW shares practical strategies for implementing AI tools in your school — from procurement to pedagogy. Learn how CDW supports schools in building sustainable, effective AI ecosystems.", speaker: { name: "Victoria Rose Thompson", role: "Education Strategist", org: "CDW", init: "VT", color: "#3d9970", linkedin: "https://www.linkedin.com/in/victoriarosethompson/" } },
+  { id: 115, category: "Apply", grade: "All Grade Levels",          slot: 3, room: 2, capacity: 50,  title: "AI in Education: Strategies & Solutions with CDW", desc: "Victoria Rose Thompson from CDW shares practical strategies for implementing AI tools in your school — from procurement to pedagogy. Learn how CDW supports schools in building sustainable, effective AI ecosystems.", speaker: { name: "Victoria Rose Thompson", role: "Education Strategist", org: "CDW", init: "VT", color: "#3d9970", linkedin: "https://www.linkedin.com/in/victoriarosethompson/" } },
+  { id: 116, category: "Apply", grade: "All Grade Levels",          slot: 2, room: 1, capacity: 50,  title: "Microsoft Elevate: AI Tools for Educators", desc: "Geri Gillespy from Microsoft Elevate walks educators through the latest AI tools in the Microsoft ecosystem — including Copilot, Teams, and more — with hands-on applications for classroom and administration.", speaker: { name: "Geri Gillespy", role: "Senior Executive", org: "Microsoft Elevate", init: "GG", color: "#4c7d5c", linkedin: "https://www.linkedin.com/in/gerigillespy/" } },
+  { id: 117, category: "Apply", grade: "All Grade Levels",          slot: 3, room: 1, capacity: 50,  title: "Microsoft Elevate: AI Tools for Educators", desc: "Geri Gillespy from Microsoft Elevate walks educators through the latest AI tools in the Microsoft ecosystem — including Copilot, Teams, and more — with hands-on applications for classroom and administration.", speaker: { name: "Geri Gillespy", role: "Senior Executive", org: "Microsoft Elevate", init: "GG", color: "#4c7d5c", linkedin: "https://www.linkedin.com/in/gerigillespy/" } },
+];
+
+let activeBreakoutCat = "All";
+let activeBreakoutSlot = "All";
+
+function renderSpeakerBlock(sp) {
+  const inner = `<div class="bs-name">${sp.name}</div><div class="bs-role">${sp.role}</div>${sp.org ? `<div class="bs-role">${sp.org}</div>` : ''}${sp.linkedin ? `<div class="bs-linkedin">View LinkedIn →</div>` : ''}`;
+  return sp.linkedin
+    ? `<a class="breakout-speaker" href="${sp.linkedin}" target="_blank" rel="noopener noreferrer"><div>${inner}</div></a>`
+    : `<div class="breakout-speaker" style="cursor:default"><div>${inner}</div></div>`;
+}
+
+function renderBreakouts() {
+  const grid = document.getElementById("breakoutGrid");
+  const slotNum = activeBreakoutSlot === "All" ? null : parseInt(activeBreakoutSlot);
+  const filtered = (activeBreakoutCat === "All" && slotNum === null)
+    ? BREAKOUT_SESSIONS
+    : BREAKOUT_SESSIONS.filter(b =>
+        (activeBreakoutCat === "All" || b.category === activeBreakoutCat) &&
+        (slotNum === null || b.slot === slotNum)
+      );
+
+  grid.innerHTML = filtered.map(b => {
+    const sp = b.speaker;
+    const sp2 = b.speaker2 || null;
+    return `
+      <div class="breakout-card" id="card-${b.id}">
+        <div class="breakout-card-top">
+          <div class="breakout-tags">
+            <span class="cat-pill cat-${b.category}">${b.category}</span>
+            ${b.grade ? `<span class="grade-pill">${b.grade}</span>` : ''}
+            ${b.slot != null ? `<span class="slot-pill">Session ${b.slot} · Breakout ${b.room}</span>` : ''}
+            ${b.capacity ? `<span class="cap-pill">Cap: ${b.capacity}</span>` : ''}
+          </div>
+          <h3>${b.title}</h3>
+          ${b.note ? `<div class="session-note">${b.note}</div>` : ''}
+          <div class="speaker-top">
+            <div class="bs-avatar" style="background:${sp.color}">${sp.init}</div>
+            ${sp2 ? `<div class="bs-avatar" style="background:${sp2.color}">${sp2.init}</div>` : ''}
+            <div>
+              <div class="bs-name">${sp.name}${sp2 ? ` &amp; ${sp2.name}` : ''}</div>
+              ${sp.org ? `<div class="bs-role">${sp.org}</div>` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="desc">${b.desc}</div>
+        ${renderSpeakerBlock(sp)}
+        ${sp2 ? renderSpeakerBlock(sp2) : ''}
+      </div>`;
+  }).join("") || `<p style="color:var(--muted);">No sessions in this category yet.</p>`;
+}
+
+document.getElementById("breakoutFilter").addEventListener("click", e => {
+  const btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  if (btn.dataset.cat !== undefined) {
+    document.querySelectorAll("#breakoutFilter .filter-btn[data-cat]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeBreakoutCat = btn.dataset.cat;
+  } else if (btn.dataset.slot !== undefined) {
+    document.querySelectorAll("#breakoutFilter .filter-btn[data-slot]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeBreakoutSlot = btn.dataset.slot;
+  }
+  renderBreakouts();
+});
+
+function filterBySlot(slot) {
+  activeBreakoutCat = "All";
+  activeBreakoutSlot = String(slot);
+  document.querySelectorAll("#breakoutFilter .filter-btn[data-cat]").forEach(b => b.classList.toggle("active", b.dataset.cat === "All"));
+  document.querySelectorAll("#breakoutFilter .filter-btn[data-slot]").forEach(b => b.classList.toggle("active", b.dataset.slot === String(slot)));
+  renderBreakouts();
+  document.getElementById("breakouts").scrollIntoView({ behavior: "smooth" });
+}
+
+function renderSchedule() {
+  const container = document.getElementById("scheduleGrid");
+  if (!container) return;
+  container.innerHTML = FULL_SCHEDULE.map(item => {
+    const isBreakout = item.type === "breakout";
+    return `
+      <div class="sched-item sched-type-${item.type}">
+        <div class="sched-item-time">${item.time}</div>
+        <div class="sched-item-body">
+          <div class="sched-item-title">${item.event}</div>
+          ${item.speaker ? `<div class="sched-item-speaker">${item.speaker}</div>` : ''}
+          <div class="sched-item-desc">${item.desc}</div>
+        </div>
+        <div class="sched-item-right">
+          <div class="sched-item-location">${item.location}</div>
+          ${isBreakout ? `<button class="sched-view-btn" onclick="filterBySlot(${item.slot})">View Sessions →</button>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+renderBreakouts();
+renderSchedule();
+</script>
+</body>
+</html>
