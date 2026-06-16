@@ -38,7 +38,7 @@
     #breakouts .section-title { color: var(--green); }
 
     .lad-strip {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
       border: 1.5px solid var(--border); border-radius: var(--radius);
       overflow: hidden; margin-bottom: 2.5rem;
     }
@@ -50,9 +50,10 @@
       font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
       margin-bottom: .3rem;
     }
-    .lad-learn  .lad-label { color: #2c5234; }
-    .lad-apply  .lad-label { color: #B99758; }
-    .lad-discern .lad-label { color: #2c5234; }
+    .lad-learn   .lad-label { color: #2c5234; }
+    .lad-equip   .lad-label { color: #B99758; }
+    .lad-aspire  .lad-label { color: #1d6b8a; }
+    .lad-disciple .lad-label { color: #6d28d9; }
     .lad-cell h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
     .lad-cell p  { font-size: .82rem; color: var(--muted); line-height: 1.5; }
     .lad-arrow {
@@ -73,15 +74,18 @@
     #breakouts .filter-btn[data-cat="All"],
     #breakouts .filter-btn[data-cat="All"].active,
     #breakouts .filter-btn[data-cat="All"]:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-    #breakouts .filter-btn[data-cat="Learn"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
-    #breakouts .filter-btn[data-cat="Apply"] { color: #B99758; border-color: #B99758; background: rgba(185,151,88,.08); }
-    #breakouts .filter-btn[data-cat="Discern"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+    #breakouts .filter-btn[data-cat="Learn"]    { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+    #breakouts .filter-btn[data-cat="Equip"]    { color: #B99758; border-color: #B99758; background: rgba(185,151,88,.08); }
+    #breakouts .filter-btn[data-cat="Aspire"]   { color: #1d6b8a; border-color: #1d6b8a; background: rgba(29,107,138,.08); }
+    #breakouts .filter-btn[data-cat="Disciple"] { color: #6d28d9; border-color: #6d28d9; background: rgba(109,40,217,.08); }
     #breakouts .filter-btn[data-cat="Learn"].active,
     #breakouts .filter-btn[data-cat="Learn"]:hover { background: #2c5234; color: #fff; border-color: #2c5234; }
-    #breakouts .filter-btn[data-cat="Apply"].active,
-    #breakouts .filter-btn[data-cat="Apply"]:hover { background: #B99758; color: #fff; border-color: #B99758; }
-    #breakouts .filter-btn[data-cat="Discern"].active,
-    #breakouts .filter-btn[data-cat="Discern"]:hover { background: #2c5234; color: #fff; border-color: #2c5234; }
+    #breakouts .filter-btn[data-cat="Equip"].active,
+    #breakouts .filter-btn[data-cat="Equip"]:hover { background: #B99758; color: #fff; border-color: #B99758; }
+    #breakouts .filter-btn[data-cat="Aspire"].active,
+    #breakouts .filter-btn[data-cat="Aspire"]:hover { background: #1d6b8a; color: #fff; border-color: #1d6b8a; }
+    #breakouts .filter-btn[data-cat="Disciple"].active,
+    #breakouts .filter-btn[data-cat="Disciple"]:hover { background: #6d28d9; color: #fff; border-color: #6d28d9; }
     #breakouts .filter-btn[data-slot] { color: var(--muted); border-color: var(--border); background: var(--surface); }
     #breakouts .filter-btn[data-slot].active,
     #breakouts .filter-btn[data-slot]:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
@@ -92,9 +96,10 @@
       font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
       padding: .2rem .65rem; border-radius: 12px; display: inline-block;
     }
-    .cat-Learn   { background: rgba(44,82,52,.12);   color: #2c5234; border: 1px solid #2c5234; }
-    .cat-Apply   { background: rgba(185,151,88,.12); color: #B99758; border: 1px solid #B99758; }
-    .cat-Discern { background: rgba(44,82,52,.12);   color: #2c5234; border: 1px solid #2c5234; }
+    .cat-Learn    { background: rgba(44,82,52,.12);    color: #2c5234; border: 1px solid #2c5234; }
+    .cat-Equip    { background: rgba(185,151,88,.12);  color: #B99758; border: 1px solid #B99758; }
+    .cat-Aspire   { background: rgba(29,107,138,.12);  color: #1d6b8a; border: 1px solid #1d6b8a; }
+    .cat-Disciple { background: rgba(109,40,217,.12);  color: #6d28d9; border: 1px solid #6d28d9; }
 
     .grade-pill {
       font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
@@ -202,6 +207,7 @@
 <section id="breakouts">
   <div class="section" style="padding-top: 0; padding-bottom: 0;">
     <div class="section-title">Breakout Sessions</div>
+    <p class="section-sub" style="color:var(--muted); margin-bottom:.75rem;">The LEAD framework reflects Westminster's commitment to purposeful innovation. We do not pursue technology for its own sake. We learn what is changing, equip educators with practical tools, aspire toward stronger learning experiences, and disciple students with wisdom, integrity, and Christ-centered purpose.</p>
     <p class="section-sub">Browse sessions below, then <a href="https://forms.office.com/r/c7MKTGSTdS" target="_blank" rel="noopener noreferrer" style="color:#2c5234;font-weight:600;">register here</a> — spaces are limited.</p>
 
     <div class="lad-strip">
@@ -211,16 +217,22 @@
         <p>Build confidence with foundational AI concepts and strategies that every educator can apply immediately.</p>
         <div class="lad-arrow">›</div>
       </div>
-      <div class="lad-cell lad-apply">
-        <div class="lad-label">Apply</div>
-        <h3>Application in Context</h3>
-        <p>Apply AI tools purposefully within your classroom, curriculum, and school community in meaningful ways.</p>
+      <div class="lad-cell lad-equip">
+        <div class="lad-label">Equip</div>
+        <h3>Tools &amp; Practice</h3>
+        <p>Equip yourself with practical AI tools and classroom-ready strategies to enhance teaching and learning.</p>
         <div class="lad-arrow">›</div>
       </div>
-      <div class="lad-cell lad-discern">
-        <div class="lad-label">Discern</div>
-        <h3>Other Ideas / Extensions</h3>
-        <p>Deep dive into specialized, advanced, or extension topics for those ready to explore further.</p>
+      <div class="lad-cell lad-aspire">
+        <div class="lad-label">Aspire</div>
+        <h3>Vision &amp; Innovation</h3>
+        <p>Explore forward-thinking possibilities for AI in education and cast vision for what could be in your school community.</p>
+        <div class="lad-arrow">›</div>
+      </div>
+      <div class="lad-cell lad-disciple">
+        <div class="lad-label">Disciple</div>
+        <h3>Faith &amp; Formation</h3>
+        <p>Integrate AI thoughtfully into your Christ-centered mission, stewarding technology to shape students of wisdom and character.</p>
       </div>
     </div>
 
@@ -229,8 +241,9 @@
         <span class="filter-label">Category:</span>
         <button class="filter-btn active" data-cat="All">All</button>
         <button class="filter-btn" data-cat="Learn">Learn</button>
-        <button class="filter-btn" data-cat="Apply">Apply</button>
-        <button class="filter-btn" data-cat="Discern">Discern</button>
+        <button class="filter-btn" data-cat="Equip">Equip</button>
+        <button class="filter-btn" data-cat="Aspire">Aspire</button>
+        <button class="filter-btn" data-cat="Disciple">Disciple</button>
       </div>
       <div class="filter-row">
         <span class="filter-label">Session:</span>

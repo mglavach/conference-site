@@ -133,9 +133,10 @@
     .empty-row td { color: var(--muted); font-style: italic; text-align: center; padding: 1.5rem; }
 
     /* ── CATEGORY PILL ── */
-    .cat-Learn   { background: #dbeafe; color: #1d4ed8; }
-    .cat-Apply   { background: #d1fae5; color: #065f46; }
-    .cat-Discern { background: #ede9fe; color: #6d28d9; }
+    .cat-Learn    { background: #dbeafe; color: #1d4ed8; }
+    .cat-Equip    { background: #d1fae5; color: #065f46; }
+    .cat-Aspire   { background: #cffafe; color: #0e7490; }
+    .cat-Disciple { background: #ede9fe; color: #6d28d9; }
 
     .no-results { text-align: center; padding: 3rem; color: var(--muted); }
   </style>
@@ -189,8 +190,9 @@
     <select id="catFilter" onchange="renderBreakouts()">
       <option value="">All Categories</option>
       <option>Learn</option>
-      <option>Apply</option>
-      <option>Discern</option>
+      <option>Equip</option>
+      <option>Aspire</option>
+      <option>Disciple</option>
     </select>
   </div>
 
@@ -216,13 +218,13 @@ const BREAKOUT_SESSIONS = [
   },
   {
     id: 103,
-    category: "Apply",
+    category: "Equip",
     title: "Using AI in Math Classrooms (Snorkl and FlintK12)",
     speaker: { name: "Jordanna Court", role: "Education Leadership Professional | Developer of Young Minds", org: "Pine Crest School" },
   },
   {
     id: 104,
-    category: "Apply",
+    category: "Equip",
     title: "Build Your Own AI Classroom Assistant",
     speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "" },
   },
@@ -234,19 +236,19 @@ const BREAKOUT_SESSIONS = [
   },
   {
     id: 106,
-    category: "Apply",
+    category: "Equip",
     title: "Flint K12",
     speaker: { name: "Kelly Schuster-Paredes", role: "Educational Technology Consultant", org: "" },
   },
   {
     id: 107,
-    category: "Apply",
+    category: "Equip",
     title: "Differentiating Instruction with AI",
     speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "" },
   },
   {
     id: 108,
-    category: "Discern",
+    category: "Aspire",
     title: "A Continuous Framework for Sustainable AI Growth",
     speaker: { name: "Jessie Metzger", role: "AI Education Specialist", org: "" },
   },

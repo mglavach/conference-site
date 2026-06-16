@@ -143,7 +143,7 @@ nav a:hover { color: #fff; text-decoration: underline; }
 #breakouts { background: #f1f5f1; }
 
 .lad-strip {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
   border: 1.5px solid var(--border); border-radius: var(--radius);
   overflow: hidden; margin-bottom: 2.5rem;
 }
@@ -155,9 +155,10 @@ nav a:hover { color: #fff; text-decoration: underline; }
   font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
   margin-bottom: .3rem;
 }
-.lad-learn  .lad-label { color: #2c5234; }
-.lad-apply  .lad-label { color: #B99758; }
-.lad-discern .lad-label { color: #2c5234; }
+.lad-learn   .lad-label { color: #2c5234; }
+.lad-equip   .lad-label { color: #B99758; }
+.lad-aspire  .lad-label { color: #1d6b8a; }
+.lad-disciple .lad-label { color: #6d28d9; }
 .lad-cell h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
 .lad-cell p  { font-size: .82rem; color: var(--muted); line-height: 1.5; }
 .lad-arrow {
@@ -182,9 +183,10 @@ nav a:hover { color: #fff; text-decoration: underline; }
   padding: .2rem .65rem; border-radius: 12px; display: inline-block;
   color: #2c5234; background: transparent; border: 1px solid #2c5234;
 }
-.cat-Learn { background: rgba(44,82,52,.12); color: #2c5234; border-color: #2c5234; }
-.cat-Apply { background: rgba(185,151,88,.12); color: #B99758; border-color: #B99758; }
-.cat-Discern { background: rgba(44,82,52,.12); color: #2c5234; border-color: #2c5234; }
+.cat-Learn    { background: rgba(44,82,52,.12);    color: #2c5234; border-color: #2c5234; }
+.cat-Equip    { background: rgba(185,151,88,.12);  color: #B99758; border-color: #B99758; }
+.cat-Aspire   { background: rgba(29,107,138,.12);  color: #1d6b8a; border-color: #1d6b8a; }
+.cat-Disciple { background: rgba(109,40,217,.12);  color: #6d28d9; border-color: #6d28d9; }
 .slot-pill {
   font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
   padding: .2rem .65rem; border-radius: 12px; display: inline-block;
@@ -200,26 +202,33 @@ nav a:hover { color: #fff; text-decoration: underline; }
 .breakout-filter { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
 .filter-row { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .filter-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); white-space: nowrap; margin-right: .2rem; }
-#breakouts .filter-btn[data-cat="Learn"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
-#breakouts .filter-btn[data-cat="Apply"] { color: #B99758; border-color: #B99758; background: rgba(185,151,88,.08); }
-#breakouts .filter-btn[data-cat="Discern"] { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+#breakouts .filter-btn[data-cat="Learn"]    { color: #2c5234; border-color: #2c5234; background: rgba(44,82,52,.08); }
+#breakouts .filter-btn[data-cat="Equip"]    { color: #B99758; border-color: #B99758; background: rgba(185,151,88,.08); }
+#breakouts .filter-btn[data-cat="Aspire"]   { color: #1d6b8a; border-color: #1d6b8a; background: rgba(29,107,138,.08); }
+#breakouts .filter-btn[data-cat="Disciple"] { color: #6d28d9; border-color: #6d28d9; background: rgba(109,40,217,.08); }
 #breakouts .filter-btn[data-cat="Learn"].active,
 #breakouts .filter-btn[data-cat="Learn"]:hover {
   background: #2c5234;
   color: #fff;
   border-color: #2c5234;
 }
-#breakouts .filter-btn[data-cat="Apply"].active,
-#breakouts .filter-btn[data-cat="Apply"]:hover {
+#breakouts .filter-btn[data-cat="Equip"].active,
+#breakouts .filter-btn[data-cat="Equip"]:hover {
   background: #B99758;
   color: #fff;
   border-color: #B99758;
 }
-#breakouts .filter-btn[data-cat="Discern"].active,
-#breakouts .filter-btn[data-cat="Discern"]:hover {
-  background: #2c5234;
+#breakouts .filter-btn[data-cat="Aspire"].active,
+#breakouts .filter-btn[data-cat="Aspire"]:hover {
+  background: #1d6b8a;
   color: #fff;
-  border-color: #2c5234;
+  border-color: #1d6b8a;
+}
+#breakouts .filter-btn[data-cat="Disciple"].active,
+#breakouts .filter-btn[data-cat="Disciple"]:hover {
+  background: #6d28d9;
+  color: #fff;
+  border-color: #6d28d9;
 }
 #breakouts .filter-btn.active,
 #breakouts .filter-btn:hover {

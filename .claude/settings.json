@@ -12,7 +12,8 @@
       "PowerShell($env:HOME; $env:USERPROFILE; [System.Environment]::GetEnvironmentVariable\\(\"HOME\"\\))",
       "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git init; git checkout -b main)",
       "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git add embed-sessions.html; git commit -m \"Add embed-sessions.html for Breakout Sessions and Conference Schedule sections\"; git remote add origin https://github.com/mglavach/conference-sessions.git; git push -u origin main)",
-      "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git mv embed-sessions.html index.html; git commit -m \"Rename embed-sessions.html to index.html for GitHub Pages\"; git push)"
+      "PowerShell($env:GIT_CONFIG_GLOBAL = \"C:\\\\Users\\\\mglavach\\\\.gitconfig\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-sessions\"; git mv embed-sessions.html index.html; git commit -m \"Rename embed-sessions.html to index.html for GitHub Pages\"; git push)",
+      "Bash(git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\AI\\\\2026_Conference\\\\conference-site\" add .)"
     ],
     "additionalDirectories": [
       "c:\\Users\\mglavach\\OneDrive - Westminster Christian School\\AI\\2026_Conference\\conference-site\\conference-site\\.git",
